@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import Project from "./Components/Project";
 import ProjectForm from "./Components/ProjectForm";
+import Recipe from "./Components/Recipe";
 import RecipeForm from './Components/RecipeForm';
 
 const Router = () => {
@@ -21,6 +22,7 @@ const Router = () => {
             <Route path="/project/update/:id" element={<ProjectForm type="update" />}></Route>
 
             {/* Recipe Routes */}
+            <Route path="/project/:projectId/recipe/:id" element={<Recipe />}></Route>
             <Route path="/project/:projectId/recipe/create" element={<RecipeForm type="create" />}></Route>
             <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />}></Route>
         </Routes>

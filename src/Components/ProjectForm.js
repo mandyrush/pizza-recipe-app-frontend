@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
 const PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects';
@@ -12,15 +12,13 @@ const ProjectForm = ({ type }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
 
+    const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
         if (type === 'update') {
-            fetch(PROJECT_API + '/' + id)
-                .then(response => response.json())
-                .then(data => setProject(data[0]))
-                .catch(error => console.log('Failed to fetch project: ', error))
+            setProject(location.state.project);
         }
     }, [])
 

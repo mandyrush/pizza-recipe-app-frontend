@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
 const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
 
 const RecipeForm = ({ type }) => {
     const { projectId, recipeId } = useParams();
+    const location = useLocation();
 
     const [recipe, setRecipe] = useState({
         name: '',
@@ -19,10 +20,7 @@ const RecipeForm = ({ type }) => {
 
     useEffect(() => {
         if (type === 'update') {
-            fetch(RECIPE_API + '/' + recipeId)
-                .then(response => response.json())
-                .then(data => setRecipe(data[0]))
-                .catch(error => console.log('Failed to fetch recipe: ', error))
+            setRecipe(location.state.recipe);
         }
     }, [])
 
@@ -61,10 +59,8 @@ const RecipeForm = ({ type }) => {
             {recipe.name && <h2>{recipe.name}</h2>}
             {recipe.notes && <p>{recipe.notes}</p>}
 
-            {/* Name could either be removed or changed to description */}
-
             <form>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">Version Name</label>
                 <input type="text" name="name" id="name" value={recipe.name} onChange={(event) => setRecipe({ ...recipe, name: event.target.value })} />
                 <label htmlFor="notes">Notes</label>
                 <textarea name="notes" id="notes" value={recipe.notes} onChange={(event) => setRecipe({ ...recipe, notes: event.target.value })} rows="3" />
