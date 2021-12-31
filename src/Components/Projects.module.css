@@ -1,16 +1,5 @@
-.btn {
-    display: block;
-    border: 1px solid blue;
-    padding: 1rem 2rem;
-}
-
 .projectCards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 1rem;
-}
-
-.card {
-    padding: 1rem;
     margin-bottom: 1rem;
 }

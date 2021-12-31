@@ -5,7 +5,8 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import Project from "./Components/Project";
-import ProjectCreate from "./Components/ProjectCreate";
+import ProjectForm from "./Components/ProjectForm";
+import RecipeForm from './Components/RecipeForm';
 
 const Router = () => {
     return (
@@ -16,7 +17,12 @@ const Router = () => {
             {/* Projects Routes */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/project/:id" element={<Project />} />
-            <Route path="/project/create" element={<ProjectCreate />} ></Route>
+            <Route path="/project/create" element={<ProjectForm type="create" />} ></Route>
+            <Route path="/project/update/:id" element={<ProjectForm type="update" />}></Route>
+
+            {/* Recipe Routes */}
+            <Route path="/project/:projectId/recipe/create" element={<RecipeForm type="create" />}></Route>
+            <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />}></Route>
         </Routes>
     )
 }
