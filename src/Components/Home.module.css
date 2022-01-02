@@ -1,0 +1,19 @@
+.homeLayout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
+}
+
+.logo {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #000;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

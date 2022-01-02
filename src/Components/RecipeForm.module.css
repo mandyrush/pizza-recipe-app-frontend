@@ -1,0 +1,25 @@
+header {
+    height: 150px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.recipePreview {
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: 6px 6px 10px rgba(0,0,0,0.15);
+}
+
+.recipePreviewHeader {
+    text-align: center;
+    padding: 1rem;
+}

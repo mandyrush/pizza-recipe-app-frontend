@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
+import styles from './ProjectForm.module.css';
+
 const PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects';
 
 const ProjectForm = ({ type }) => {
@@ -61,13 +63,19 @@ const ProjectForm = ({ type }) => {
 
     return (
         <div>
-            {CapitalizeFirstLetter(type)} Project
-            {project.name && <h2>{project.name}</h2>}
-            <form>
-                <input type="text" name="name" value={project.name} onChange={(event) => handleChange(event)} />
-                <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
-                {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
-            </form>
+            <header>
+                <h1>{CapitalizeFirstLetter(type)} Pizza</h1>
+                {project.name && <h2>{project.name}</h2>}
+            </header>
+            <div className="interior-content">
+                <form>
+                    <input type="text" name="name" id="name" value={project.name} onChange={(event) => handleChange(event)} />
+                    <label htmlFor="name">Name</label>
+                    <p>Upload Project Image <button>Upload</button></p>
+                    <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
+                    {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
+                </form>
+            </div>
         </div>
     );
 }

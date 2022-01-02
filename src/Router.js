@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom';
 
 import Home from "./Components/Home";
-import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import Project from "./Components/Project";
 import ProjectForm from "./Components/ProjectForm";
@@ -13,7 +12,6 @@ const Router = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
 
             {/* Projects Routes */}
             <Route path="/dashboard" element={<Dashboard />} />

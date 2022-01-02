@@ -1,6 +1,14 @@
+a {
+    padding: 0.5rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
     width: 50%;
     margin: auto;
+}
+
+.interior-content {
+    padding: 1rem;
 }

@@ -10,9 +10,10 @@ const ProjectCard = ({
 }) => {
     return (
         <div key={index} className={styles.card}>
-            Image
-            <p>{project.name}</p>
-            <div className="links">
+            <div className={styles.cardImage}>
+                <p>{project.name}</p>
+            </div>
+            <div className={styles.cardContent}>
                 <Link
                     className={styles.link}
                     to={`/project/${project.id}`}

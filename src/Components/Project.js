@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 
+import styles from './Project.module.css';
+
 const Project = () => {
     const [project, setProject] = useState([]);
     const [recipes, setRecipes] = useState([]);
@@ -39,46 +41,47 @@ const Project = () => {
 
     return (
         <div>
-            {project && (
-                <h1>{project.name}</h1>
-            )}
+            <header>
+                {project && (
+                    <h1>{project.name}</h1>
+                )}
+            </header>
+            <div className="interior-content">
+                <h2>Pizza Versions</h2>
+                <hr />
+                {recipes.length > 0 && (
+                    recipes.map((recipe, index) => (
 
-            Image Placeholder
+                        <div key={index}>
+                            <p>{recipe.name} - Rating</p>
+                            <Link
+                                to={`recipe/${recipe.id}`}
+                                state={{ recipe: recipe }}
+                            >
+                                View
+                            </Link>
+                            <Link
+                                to={`/project/${project.id}/recipe/update/${recipe.id}`}
+                                state={{ recipe: recipe }}
+                            >
+                                Edit
+                            </Link>
+                            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
+                            <Link to={`/project/${project.id}/recipe/create`}>New Version</Link>
+                            <hr />
+                        </div>
+                    ))
+                )}
 
-            <h2>Revision History</h2>
-            {recipes.length > 0 && (
-                recipes.map((recipe, index) => (
-
-                    <div key={index}>
-                        <p>Version Number: {recipe.version}</p>
-                        <p>Parent Version: {recipe.parent_version}</p>
-                        <Link
-                            to={`recipe/${recipe.id}`}
-                            state={{ recipe: recipe }}
-                        >
-                            View
-                        </Link>
-                        <p>Rating Placeholder</p>
-                        <Link to={`/project/${project.id}/recipe/create`}>New Version</Link>
-                        <Link
-                            to={`/project/${project.id}/recipe/update/${recipe.id}`}
-                            state={{ recipe: recipe }}
-                        >
-                            Edit
-                        </Link>
-                        <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-                    </div>
-                ))
-            )}
-
-            {
-                recipes.length <= 0 && (
-                    <div>
-                        <p>Create new version to get started!</p>
-                        <Link to={`/project/${project.id}/recipe/create`}>Create</Link>
-                    </div>
-                )
-            }
+                {
+                    recipes.length <= 0 && (
+                        <div>
+                            <p>Create a new version to get started!</p>
+                            <Link to={`/project/${project.id}/recipe/create`}>Create</Link>
+                        </div>
+                    )
+                }
+            </div>
         </div >
     );
 }

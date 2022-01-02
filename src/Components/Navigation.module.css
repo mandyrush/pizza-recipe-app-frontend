@@ -1,0 +1,11 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ccc;
+    padding: 1rem;
+}
+
+.navLink {
+    padding: 0.5rem;
+}

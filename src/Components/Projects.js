@@ -40,7 +40,7 @@ const Projects = () => {
 
     return (
         <div>
-            <h2>My Pizzas</h2>
+            <h1>My Pizzas</h1>
             {isLoading && <p>Making Pizzas...</p>}
             <div className={styles.projectCards}>
                 {projects.map((project, index) => {
@@ -49,7 +49,7 @@ const Projects = () => {
                     )
                 })}
             </div>
-            <Link to={'/project/create'} >Create Project</Link>
+            <Link to={'/project/create'} >Create Pizza</Link>
         </div>
     );
 }

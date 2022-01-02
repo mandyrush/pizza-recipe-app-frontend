@@ -5,7 +5,7 @@ import Projects from './Projects';
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="interior-content">
             <Projects />
         </div>
     );
