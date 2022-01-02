@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
 import styles from './ProjectForm.module.css';
@@ -73,6 +73,14 @@ const ProjectForm = ({ type }) => {
                     <label htmlFor="name">Name</label>
                     <p>Upload Project Image <button>Upload</button></p>
                     <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
+                    <Link
+                        to={`/project/${project.id}`}
+                        state={{
+                            project: project
+                        }}
+                    >
+                        Cancel
+                    </Link>
                     {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
                 </form>
             </div>

@@ -20,7 +20,7 @@ const Router = () => {
             <Route path="/project/update/:id" element={<ProjectForm type="update" />}></Route>
 
             {/* Recipe Routes */}
-            <Route path="/project/:projectId/recipe/:id" element={<Recipe />}></Route>
+            <Route path="/project/:projectId/recipe/:recipeId" element={<Recipe />}></Route>
             <Route path="/project/:projectId/recipe/create" element={<RecipeForm type="create" />}></Route>
             <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />}></Route>
         </Routes>

@@ -3,7 +3,12 @@ import { useState, useEffect } from 'react';
 
 const INGREDIENT_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
 
-const IngredientForm = ({ handleUpdateIngredients, newRecipeId }) => {
+const IngredientForm = ({
+    handleUpdateIngredients,
+    newRecipeId,
+    setIngredientFormIsVisible,
+    setStepFormIsVisible
+}) => {
     const [ingredient, setIngredient] = useState({
         name: '',
         recipe_id: newRecipeId,
@@ -14,6 +19,11 @@ const IngredientForm = ({ handleUpdateIngredients, newRecipeId }) => {
     useEffect(() => {
         setIngredient({ ...ingredient, recipe_id: newRecipeId })
     }, [newRecipeId])
+
+    const handleNext = () => {
+        setIngredientFormIsVisible(false);
+        setStepFormIsVisible(true);
+    }
 
     const handleAddIngredient = (event) => {
         event.preventDefault();
@@ -41,6 +51,7 @@ const IngredientForm = ({ handleUpdateIngredients, newRecipeId }) => {
             <label htmlFor="ingredientNotes">Notes</label>
             <textarea name="ingredientNotes" id="ingredientNotes" rows="3" onChange={(event) => setIngredient({ ...ingredient, notes: event.target.value })} />
             <button onClick={(event) => handleAddIngredient(event)}>Add Ingredient</button>
+            <button onClick={handleNext}>Next</button>
         </form>
     )
 }

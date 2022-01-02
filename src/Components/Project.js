@@ -5,13 +5,14 @@ import { useParams, useLocation } from "react-router-dom";
 
 import styles from './Project.module.css';
 
+const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
+
 const Project = () => {
     const [project, setProject] = useState([]);
     const [recipes, setRecipes] = useState([]);
 
     const location = useLocation();
     const { id } = useParams();
-    const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
 
     useEffect(() => {
         setProject(location.state.project);
@@ -36,7 +37,6 @@ const Project = () => {
                 setRecipes(newRecipes);
             })
             .catch(error => console.log('Failed to delete recipe: ', error))
-
     }
 
     return (
@@ -56,7 +56,10 @@ const Project = () => {
                             <p>{recipe.name} - Rating</p>
                             <Link
                                 to={`recipe/${recipe.id}`}
-                                state={{ recipe: recipe }}
+                                state={{
+                                    recipe: recipe,
+                                    project: project
+                                }}
                             >
                                 View
                             </Link>

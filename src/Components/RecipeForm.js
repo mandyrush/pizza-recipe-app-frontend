@@ -6,6 +6,7 @@ import { CapitalizeFirstLetter } from "../helpers";
 import styles from './RecipeForm.module.css';
 
 import IngredientForm from "./IngredientForm";
+import StepForm from './StepForm';
 
 const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
 
@@ -21,8 +22,12 @@ const RecipeForm = ({ type }) => {
 
     const [newRecipeId, setNewRecipeId] = useState(null);
     const [ingredients, setIngredients] = useState([]);
+    const [steps, setSteps] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
+    const [recipeFormIsVisible, setRecipeFormIsVisible] = useState(true);
+    const [ingredientFormIsVisible, setIngredientFormIsVisible] = useState(false);
+    const [stepFormIsVisible, setStepFormIsVisible] = useState(false);
 
     // const navigate = useNavigate();
 
@@ -35,6 +40,11 @@ const RecipeForm = ({ type }) => {
     const handleUpdateIngredients = (ingredient) => {
         let newIngredients = [...ingredients, ingredient];
         setIngredients(newIngredients);
+    }
+
+    const handleUpdateSteps = (step) => {
+        let newSteps = [...steps, step];
+        setSteps(newSteps);
     }
 
     const handleSubmit = () => {
@@ -61,10 +71,10 @@ const RecipeForm = ({ type }) => {
         })
             .then(response => response.json())
             .then((data) => {
-                console.log('Data: ', data['insertId']);
                 setIsLoading(false);
                 setNewRecipeId(data['insertId']);
-                // navigate('/dashboard');
+                setRecipeFormIsVisible(false);
+                setIngredientFormIsVisible(true);
             })
             .catch(error => console.log('Error: ', error))
     }
@@ -72,7 +82,7 @@ const RecipeForm = ({ type }) => {
     return (
         <div>
             <header>
-                <h1>{CapitalizeFirstLetter(type)} Pizza</h1>
+                <h1>{CapitalizeFirstLetter(type)} Recipe</h1>
             </header>
             <div className="interior-content">
                 <div className={styles.layout}>
@@ -90,32 +100,56 @@ const RecipeForm = ({ type }) => {
                                 ))}
                             </ul>
                         }
-                        <h2>Instructions</h2>
-
+                        <h2>Steps</h2>
+                        {steps &&
+                            <ul>
+                                {steps.map((step, index) => (
+                                    <li key={index}>{step.step}</li>
+                                ))}
+                            </ul>
+                        }
                         <h2>Gallery</h2>
                     </div>
                     <div className={styles.recipeForms}>
-                        <h2>Recipe</h2>
-                        <form>
-                            <label htmlFor="name">Version Name</label>
-                            <input type="text" name="name" id="name" value={recipe.name} onChange={(event) => setRecipe({ ...recipe, name: event.target.value })} />
-                            <h2>Notes</h2>
-                            <label htmlFor="notes">Notes</label>
-                            <textarea name="notes" id="notes" value={recipe.notes} onChange={(event) => setRecipe({ ...recipe, notes: event.target.value })} rows="3" />
-                            <button type="button" onClick={handleSubmit}>Save</button>
-                            {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
-                        </form>
+                        {recipeFormIsVisible && (
+                            <div>
+                                <h2>Recipe</h2>
+                                <form>
+                                    <label htmlFor="name">Version Name</label>
+                                    <input type="text" name="name" id="name" value={recipe.name} onChange={(event) => setRecipe({ ...recipe, name: event.target.value })} />
+                                    <h2>Notes</h2>
+                                    <label htmlFor="notes">Notes</label>
+                                    <textarea name="notes" id="notes" value={recipe.notes} onChange={(event) => setRecipe({ ...recipe, notes: event.target.value })} rows="3" />
+                                    <button type="button" onClick={handleSubmit}>Next</button>
+                                    {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
+                                </form>
+                            </div>
+                        )}
 
-                        <h2>Ingredients</h2>
+                        {ingredientFormIsVisible && (
+                            <div>
+                                <h2>Ingredients</h2>
 
-                        <IngredientForm
-                            handleUpdateIngredients={handleUpdateIngredients}
-                            newRecipeId={newRecipeId}
-                        />
+                                <IngredientForm
+                                    handleUpdateIngredients={handleUpdateIngredients}
+                                    newRecipeId={newRecipeId}
+                                    setIngredientFormIsVisible={setIngredientFormIsVisible}
+                                    setStepFormIsVisible={setStepFormIsVisible}
+                                />
+                            </div>
+                        )}
 
-                        <h2>Instructions</h2>
+                        {stepFormIsVisible && (
+                            <div>
+                                <h2>Steps</h2>
+                                <StepForm
+                                    handleUpdateSteps={handleUpdateSteps}
+                                    newRecipeId={newRecipeId}
+                                />
+                            </div>
+                        )}
 
-                        <h2>Gallery</h2>
+                        {/* <h2>Gallery</h2> */}
                     </div>
                 </div>
             </div>
