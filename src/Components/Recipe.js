@@ -15,6 +15,7 @@ const Recipe = () => {
     const [recipe, setRecipe] = useState([]);
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
+    const [ratings, setRatings] = useState([]);
 
     let location = useLocation();
 
@@ -22,6 +23,7 @@ const Recipe = () => {
     useEffect(() => {
         setRecipe(location.state.recipe);
         setProject(location.state.project);
+        setRatings(location.state.ratings);
     }, [])
 
     // Get Ingredients
@@ -86,6 +88,7 @@ const Recipe = () => {
                     </div>
                     <div className={styles.ratings}>
                         <h2>Ratings</h2>
+                        {/* Join ratings and rating_categories tables in backend so all info is sent back in fetch */}
                     </div>
                 </div>
             </div>

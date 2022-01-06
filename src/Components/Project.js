@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 
+import RecipeCard from "./RecipeCard";
+
 import styles from './Project.module.css';
 
 const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
@@ -51,28 +53,11 @@ const Project = () => {
                 <hr />
                 {recipes.length > 0 && (
                     recipes.map((recipe, index) => (
-
-                        <div key={index}>
-                            <p>{recipe.name} - Rating</p>
-                            <Link
-                                to={`recipe/${recipe.id}`}
-                                state={{
-                                    recipe: recipe,
-                                    project: project
-                                }}
-                            >
-                                View
-                            </Link>
-                            <Link
-                                to={`/project/${project.id}/recipe/update/${recipe.id}`}
-                                state={{ recipe: recipe }}
-                            >
-                                Edit
-                            </Link>
-                            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-                            <Link to={`/project/${project.id}/recipe/create`}>New Version</Link>
-                            <hr />
-                        </div>
+                        <RecipeCard
+                            key={index}
+                            recipe={recipe}
+                            handleDelete={handleDelete}
+                            project={project} />
                     ))
                 )}
 

@@ -7,6 +7,7 @@ import Project from "./Components/Project";
 import ProjectForm from "./Components/ProjectForm";
 import Recipe from "./Components/Recipe";
 import RecipeForm from './Components/RecipeForm';
+import Rating from './Components/Rating';
 
 const Router = () => {
     return (
@@ -16,13 +17,16 @@ const Router = () => {
             {/* Projects Routes */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/project/:id" element={<Project />} />
-            <Route path="/project/create" element={<ProjectForm type="create" />} ></Route>
-            <Route path="/project/update/:id" element={<ProjectForm type="update" />}></Route>
+            <Route path="/project/create" element={<ProjectForm type="create" />} />
+            <Route path="/project/update/:id" element={<ProjectForm type="update" />} />
 
             {/* Recipe Routes */}
-            <Route path="/project/:projectId/recipe/:recipeId" element={<Recipe />}></Route>
-            <Route path="/project/:projectId/recipe/create" element={<RecipeForm type="create" />}></Route>
-            <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />}></Route>
+            <Route path="/project/:projectId/recipe/:recipeId" element={<Recipe />} />
+            <Route path="/project/:projectId/recipe/create" element={<RecipeForm type="create" />} />
+            <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />} />
+
+            {/* Rating Routes */}
+            <Route path="/recipe/:recipeId/rating" element={<Rating />} />
         </Routes>
     )
 }
