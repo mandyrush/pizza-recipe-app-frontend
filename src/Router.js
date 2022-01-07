@@ -7,7 +7,7 @@ import Project from "./Components/Project";
 import ProjectForm from "./Components/ProjectForm";
 import Recipe from "./Components/Recipe";
 import RecipeForm from './Components/RecipeForm';
-import Rating from './Components/Rating';
+import Rate from './Components/Rate';
 
 const Router = () => {
     return (
@@ -26,7 +26,7 @@ const Router = () => {
             <Route path="/project/:projectId/recipe/update/:recipeId" element={<RecipeForm type="update" />} />
 
             {/* Rating Routes */}
-            <Route path="/recipe/:recipeId/rating" element={<Rating />} />
+            <Route path="/recipe/:recipeId/rate" element={<Rate />} />
         </Routes>
     )
 }

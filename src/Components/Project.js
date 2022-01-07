@@ -12,6 +12,9 @@ const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
 const Project = () => {
     const [project, setProject] = useState([]);
     const [recipes, setRecipes] = useState([]);
+    const [recipeAverages, setRecipeAverages] = useState([]);
+    const [highestRating, setHighestRating] = useState({});
+    const [showRatingBanner, setShowRatingBanner] = useState(false);
 
     const location = useLocation();
     const { id } = useParams();
@@ -26,6 +29,35 @@ const Project = () => {
             .then(data => setRecipes(data))
             .catch(error => console.log('Failed to fetch recipes: ', error))
     }, [])
+
+    useEffect(() => {
+        let haveRecipesToRate = recipeAverages.find(average => average.average === 0);
+        if (haveRecipesToRate !== -1) {
+            setShowRatingBanner(true);
+        }
+    }, [recipeAverages])
+
+    const updateAverage = (average) => {
+        // Look through the recipe averages array, see if this one is in the array
+        let foundAverageIndex = recipeAverages.findIndex(recipeAverage => recipeAverage.recipeId === average.recipeId);
+        // If it is, update it
+        if (foundAverageIndex !== -1) {
+            recipeAverages[foundAverageIndex].average = average.average;
+        } else {
+            // If it isn't add it
+            recipeAverages.push(average);
+        }
+        getHighestAverage();
+    }
+
+    const getHighestAverage = () => {
+        // if (recipeAverages.length > 0) {
+        let highestRating = recipeAverages.reduce(function (prev, current) {
+            return (prev.average > current.average) ? prev : current
+        })
+        setHighestRating(highestRating);
+        // }
+    }
 
     const handleDelete = (id) => {
         fetch(RECIPES_API + '/' + id, {
@@ -43,6 +75,7 @@ const Project = () => {
 
     return (
         <div>
+            <p>You have recipes to rate!</p>
             <header>
                 {project && (
                     <h1>{project.name}</h1>
@@ -57,7 +90,9 @@ const Project = () => {
                             key={index}
                             recipe={recipe}
                             handleDelete={handleDelete}
-                            project={project} />
+                            project={project}
+                            updateAverage={updateAverage}
+                            highestRating={highestRating.recipeId === recipe.id} />
                     ))
                 )}
 

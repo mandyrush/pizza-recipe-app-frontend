@@ -4,18 +4,19 @@ import { useParams, useLocation, Link } from "react-router-dom";
 
 import styles from './Recipe.module.css';
 
+import RatingCard from './RatingCard';
+
 const INGREDIENT_API = 'https://pizza-recipe-app.herokuapp.com/ingredients';
 const STEP_API = 'https://pizza-recipe-app.herokuapp.com/steps';
 
 const Recipe = () => {
     const { projectId, recipeId } = useParams();
-    console.log(recipeId);
-
     const [project, setProject] = useState([]);
     const [recipe, setRecipe] = useState([]);
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
     const [ratings, setRatings] = useState([]);
+    const [averageRatings, setAverageRatings] = useState(0);
 
     let location = useLocation();
 
@@ -24,6 +25,7 @@ const Recipe = () => {
         setRecipe(location.state.recipe);
         setProject(location.state.project);
         setRatings(location.state.ratings);
+        setAverageRatings(location.state.averageRatings);
     }, [])
 
     // Get Ingredients
@@ -88,7 +90,22 @@ const Recipe = () => {
                     </div>
                     <div className={styles.ratings}>
                         <h2>Ratings</h2>
-                        {/* Join ratings and rating_categories tables in backend so all info is sent back in fetch */}
+
+                        {ratings.length > 0 &&
+                            (
+                                <div>
+                                    <p>Score - {averageRatings}</p>
+                                    {
+                                        ratings.map((rating, index) => (
+                                            <RatingCard key={index} rating={rating} averageRatings={averageRatings} />))
+                                    }
+                                </div>
+                            )
+                        }
+                        {
+                            ratings.length === 0 &&
+                            <Link to={`/recipe/${recipe.id}/rate`}>Rate</Link>
+                        }
                     </div>
                 </div>
             </div>

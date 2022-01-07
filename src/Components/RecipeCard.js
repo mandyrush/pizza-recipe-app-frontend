@@ -7,7 +7,9 @@ const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
 const RecipeCard = ({
     recipe,
     handleDelete,
-    project
+    project,
+    updateAverage,
+    highestRating
 }) => {
     const [ratings, setRatings] = useState([]);
     const [averageRatings, setAverageRatings] = useState(0);
@@ -27,15 +29,27 @@ const RecipeCard = ({
         });
         if (total !== 0) {
             let average = total / ratingsArray.length;
-            setAverageRatings(average);
+            setAverageRatings(average.toFixed(2));
         }
     }, [ratings])
+
+    useEffect(() => {
+        setAverageData();
+    }, [averageRatings])
+
+    const setAverageData = () => {
+        let data = {
+            recipeId: recipe.id,
+            average: Number(averageRatings)
+        }
+        updateAverage(data);
+    }
 
     return (
         <div>
             <p>{recipe.name} - {
                 averageRatings > 0 && (
-                    <Link to={`/recipe/${recipe.id}/rating`}>{averageRatings}</Link>
+                    <span>{averageRatings}</span>
                 )
             }
                 {
@@ -48,7 +62,8 @@ const RecipeCard = ({
                 state={{
                     recipe: recipe,
                     project: project,
-                    ratings: ratings
+                    ratings: ratings,
+                    averageRatings: averageRatings
                 }}
             >
                 View
@@ -60,7 +75,11 @@ const RecipeCard = ({
                 Edit
             </Link>
             <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-            <Link to={`/project/${project.id}/recipe/create`}>New Version</Link>
+            {
+                highestRating && (
+                    <Link to={`/project/${project.id}/recipe/create`}>Create New Version</Link>
+                )
+            }
             <hr />
         </div>
     )
