@@ -25,7 +25,7 @@ const RecipeCard = ({
         let ratingsArray = [...ratings];
         let total = 0;
         ratingsArray.forEach(rating => {
-            total += rating.score
+            total += Number(rating.score)
         });
         if (total !== 0) {
             let average = total / ratingsArray.length;
@@ -48,13 +48,21 @@ const RecipeCard = ({
     return (
         <div>
             <p>{recipe.name} - {
-                averageRatings > 0 && (
+                averageRatings !== 0 && (
                     <span>{averageRatings}</span>
                 )
             }
                 {
                     averageRatings === 0 && (
-                        <Link to={`/recipe/${recipe.id}/rate`}>Rate</Link>
+                        <Link
+                            to={`/recipe/${recipe.id}/rate`}
+                            state={{
+                                recipe: recipe,
+                                project: project
+                            }}
+                        >
+                            Rate
+                        </Link>
                     )
                 }</p>
             <Link

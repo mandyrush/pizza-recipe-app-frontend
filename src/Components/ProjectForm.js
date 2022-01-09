@@ -71,16 +71,9 @@ const ProjectForm = ({ type }) => {
                 <form>
                     <input type="text" name="name" id="name" value={project.name} onChange={(event) => handleChange(event)} />
                     <label htmlFor="name">Name</label>
-                    <p>Upload Project Image <button>Upload</button></p>
+                    {/* <p>Upload Project Image <button>Upload</button></p> */}
                     <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
-                    <Link
-                        to={`/project/${project.id}`}
-                        state={{
-                            project: project
-                        }}
-                    >
-                        Cancel
-                    </Link>
+                    <Link to={'/dashboard'} >Cancel</Link>
                     {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
                 </form>
             </div>

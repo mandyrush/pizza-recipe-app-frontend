@@ -11,22 +11,10 @@ const STEP_API = 'https://pizza-recipe-app.herokuapp.com/steps';
 
 const Recipe = () => {
     const { projectId, recipeId } = useParams();
-    const [project, setProject] = useState([]);
-    const [recipe, setRecipe] = useState([]);
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
-    const [ratings, setRatings] = useState([]);
-    const [averageRatings, setAverageRatings] = useState(0);
 
     let location = useLocation();
-
-    // Save Recipe 
-    useEffect(() => {
-        setRecipe(location.state.recipe);
-        setProject(location.state.project);
-        setRatings(location.state.ratings);
-        setAverageRatings(location.state.averageRatings);
-    }, [])
 
     // Get Ingredients
     useEffect(() => {
@@ -36,7 +24,7 @@ const Recipe = () => {
                 setIngredients(data)
             })
             .catch(error => console.log('Failed to get ingredients: ', error))
-    }, [recipe])
+    }, [])
 
     // Get Steps
     useEffect(() => {
@@ -46,18 +34,18 @@ const Recipe = () => {
                 setSteps(data)
             })
             .catch(error => console.log('Failed to get steps: ', error))
-    }, [recipe])
+    }, [])
 
     return (
         <div>
             <header>
-                <h1>{project.name}</h1>
-                <h2>{recipe.name}</h2>
+                <h1>{location.state.project.name}</h1>
+                <h2>{location.state.recipe.name}</h2>
             </header>
             <Link
                 to={`/project/${projectId}`}
                 state={{
-                    project: project
+                    project: location.state.project
                 }}
             >
                 Back
@@ -84,27 +72,35 @@ const Recipe = () => {
                         )}
                         <hr />
                         <h2>Notes</h2>
-                        <p>{recipe.notes}</p>
+                        <p>{location.state.recipe.notes}</p>
                         <hr />
                         <h2>Gallery</h2>
                     </div>
                     <div className={styles.ratings}>
                         <h2>Ratings</h2>
 
-                        {ratings.length > 0 &&
+                        {location.state.ratings.length > 0 &&
                             (
                                 <div>
-                                    <p>Score - {averageRatings}</p>
+                                    <p>Score - {location.state.averageRatings}</p>
                                     {
-                                        ratings.map((rating, index) => (
-                                            <RatingCard key={index} rating={rating} averageRatings={averageRatings} />))
+                                        location.state.ratings.map((rating, index) => (
+                                            <RatingCard key={index} rating={rating} averageRatings={location.state.averageRatings} />))
                                     }
                                 </div>
                             )
                         }
                         {
-                            ratings.length === 0 &&
-                            <Link to={`/recipe/${recipe.id}/rate`}>Rate</Link>
+                            location.state.ratings.length === 0 &&
+                            <Link
+                                to={`/recipe/${location.state.recipe.id}/rate`}
+                                state={{
+                                    project: location.state.project,
+                                    recipe: location.state.recipe
+                                }}
+                            >
+                                Rate
+                            </Link>
                         }
                     </div>
                 </div>

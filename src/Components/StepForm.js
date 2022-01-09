@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
 
 const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
 
@@ -9,6 +10,8 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
         recipe_id: newRecipeId,
         step_order: ''
     });
+
+    const { projectId } = useParams();
 
     useEffect(() => {
         setStep({ ...step, recipe_id: newRecipeId })
@@ -26,6 +29,11 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
         })
             .then(data => {
                 handleUpdateSteps(step);
+                setStep({
+                    step: '',
+                    recipe_id: newRecipeId,
+                    step_order: ''
+                })
             })
             .catch(error => console.log('Failed to add step: ', error))
         console.log('Step to add: ', step);
@@ -34,9 +42,9 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
     return (
         <form>
             <label htmlFor="step">Step</label>
-            <input type="text" name="step" id="step" onChange={(event) => setStep({ ...step, step: event.target.value })} />
+            <input type="text" name="step" id="step" value={step.step} onChange={(event) => setStep({ ...step, step: event.target.value })} />
             <button onClick={(event) => handleAddStep(event)}>Add Step</button>
-            <button>Finish</button>
+            <Link to={'/dashboard'}>Finish</Link>
         </form>
     )
 }
