@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
+import { getToken } from "../helpers";
 
 const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
 
@@ -23,7 +24,8 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
             },
             body: JSON.stringify(step)
         })

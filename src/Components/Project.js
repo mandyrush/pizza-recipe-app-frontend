@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
+import { getToken } from "../helpers";
 
 import RecipeCard from "./RecipeCard";
 
@@ -20,7 +21,11 @@ const Project = () => {
 
     // Get recipes for this project
     useEffect(() => {
-        fetch(RECIPES_API + '?project=' + id)
+        fetch(RECIPES_API + '?project=' + id, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => setRecipes(data))
             .catch(error => console.log('Failed to fetch recipes: ', error))
@@ -67,6 +72,7 @@ const Project = () => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `token ${getToken()}`
             }
         })
             .then(data => {

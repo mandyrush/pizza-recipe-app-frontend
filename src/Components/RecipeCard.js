@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { getToken } from "../helpers";
 
 const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
 
@@ -15,7 +16,11 @@ const RecipeCard = ({
     const [averageRatings, setAverageRatings] = useState(0);
 
     useEffect(() => {
-        fetch(RATINGS_API + `?recipe=${recipe.id}`)
+        fetch(RATINGS_API + `?recipe=${recipe.id}`, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => setRatings(data))
             .catch(error => console.log('Failed to fetch ratings: ', error))

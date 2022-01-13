@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { CapitalizeFirstLetter } from "../helpers";
+import { CapitalizeFirstLetter, getToken } from "../helpers";
 
 import styles from './RecipeForm.module.css';
 
@@ -65,7 +65,8 @@ const RecipeForm = ({ type }) => {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
             },
             body: JSON.stringify(recipe),
         })

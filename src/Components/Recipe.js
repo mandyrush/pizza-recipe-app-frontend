@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from "react-router-dom";
+import { getToken } from "../helpers";
 
 import styles from './Recipe.module.css';
 
@@ -18,7 +19,11 @@ const Recipe = () => {
 
     // Get Ingredients
     useEffect(() => {
-        fetch(INGREDIENT_API + '?recipe=' + recipeId)
+        fetch(INGREDIENT_API + '?recipe=' + recipeId, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 setIngredients(data)
@@ -28,7 +33,11 @@ const Recipe = () => {
 
     // Get Steps
     useEffect(() => {
-        fetch(STEP_API + '?recipe=' + recipeId)
+        fetch(STEP_API + '?recipe=' + recipeId, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 setSteps(data)

@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { getToken } from "../helpers";
 
 import ProjectCard from "./ProjectCard";
 
 import styles from './Projects.module.css';
 
-let FETCH_ALL_PROJECTS_API = 'https://pizza-recipe-app.herokuapp.com/projects';
+const FETCH_ALL_PROJECTS_API = 'https://pizza-recipe-app.herokuapp.com/projects';
 const DELETE_PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects/';
 
 const Projects = () => {
@@ -18,6 +19,7 @@ const Projects = () => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `token ${getToken()}`
             }
         })
             .then(data => {
@@ -29,7 +31,11 @@ const Projects = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(FETCH_ALL_PROJECTS_API)
+        fetch(FETCH_ALL_PROJECTS_API, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 setIsLoading(false);

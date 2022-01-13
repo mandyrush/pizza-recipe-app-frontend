@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import { getToken } from "../helpers";
 
 import RatingFields from "./RatingFields";
 
@@ -19,7 +20,11 @@ const Rate = () => {
 
     // Get rating categories
     useEffect(() => {
-        fetch(RATING_CATEGORIES_API)
+        fetch(RATING_CATEGORIES_API, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
             .then(response => response.json())
             .then(data => setRatingCategories(data))
             .catch(error => console.log('Failed to fetch rating categories', error))
@@ -49,7 +54,8 @@ const Rate = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Authorization': `token ${getToken()}`
                     },
                     body: JSON.stringify(rating)
                 })

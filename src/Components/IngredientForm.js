@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import { getToken } from "../helpers";
 
 const INGREDIENT_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
 
@@ -31,7 +32,8 @@ const IngredientForm = ({
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
             },
             body: JSON.stringify(ingredient)
         })

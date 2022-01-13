@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
+import { getToken } from "../helpers";
 
 import styles from './ProjectForm.module.css';
 
@@ -50,7 +51,8 @@ const ProjectForm = ({ type }) => {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
             },
             body: JSON.stringify(project),
         })
