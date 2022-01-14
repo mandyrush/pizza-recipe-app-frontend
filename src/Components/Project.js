@@ -62,7 +62,6 @@ const Project = () => {
             let highestRating = recipeAverages.reduce(function (prev, current) {
                 return (Number(prev.average) > Number(current.average)) ? prev : current
             })
-            console.log('Highest Rating: ', highestRating)
             setHighestRating(highestRating);
         }
     }

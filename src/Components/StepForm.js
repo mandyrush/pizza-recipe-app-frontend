@@ -38,7 +38,6 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
                 })
             })
             .catch(error => console.log('Failed to add step: ', error))
-        console.log('Step to add: ', step);
     }
 
     return (

@@ -10,10 +10,12 @@ const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true);
         let user = {
             username: username,
             password: password
@@ -32,9 +34,11 @@ const LoginForm = () => {
                 document.cookie = `loggedIn=true`;
                 document.cookie = `token=${token}`;
                 document.cookie = `username=${username}`;
+                setIsLoading(false);
                 navigate('/dashboard');
             })
             .catch(error => {
+                setIsLoading(false);
                 setLoginError('Unable to login, please try again');
                 console.log('Failed to Login User: ', error)
             })
@@ -64,6 +68,11 @@ const LoginForm = () => {
                 <label htmlFor="password">Password</label>
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
             </form>
+            {
+                isLoading && (
+                    <p>Processing...</p>
+                )
+            }
             {
                 loginError !== '' && (
                     <p>{loginError}</p>

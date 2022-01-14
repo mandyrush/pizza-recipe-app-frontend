@@ -7,19 +7,20 @@ const INGREDIENT_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
 const IngredientForm = ({
     handleUpdateIngredients,
     newRecipeId,
+    recipeId,
     setIngredientFormIsVisible,
     setStepFormIsVisible
 }) => {
     const [ingredient, setIngredient] = useState({
         name: '',
-        recipe_id: newRecipeId,
+        recipe_id: newRecipeId || recipeId,
         quantity: '',
         notes: ''
     });
 
     useEffect(() => {
-        setIngredient({ ...ingredient, recipe_id: newRecipeId })
-    }, [newRecipeId])
+        setIngredient({ ...ingredient, recipe_id: newRecipeId || recipeId })
+    }, [newRecipeId, recipeId])
 
     const handleNext = () => {
         setIngredientFormIsVisible(false);
@@ -47,7 +48,6 @@ const IngredientForm = ({
                 })
             })
             .catch(error => console.log('Failed to add ingredient: ', error))
-        console.log('Ingredient to add: ', ingredient);
     }
 
     return (

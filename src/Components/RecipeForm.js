@@ -11,7 +11,7 @@ import StepForm from './StepForm';
 const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
 
 const RecipeForm = ({ type }) => {
-    const { projectId } = useParams();
+    const { projectId, recipeId } = useParams();
     const location = useLocation();
 
     const [recipe, setRecipe] = useState({
@@ -50,34 +50,41 @@ const RecipeForm = ({ type }) => {
     const handleSubmit = () => {
         setIsLoading(true);
 
-        let apiUrl;
-        let method;
-
         if (type === 'create') {
-            apiUrl = RECIPE_API;
-            method = 'POST';
-        } else {
-            apiUrl = RECIPE_API + '/' + recipe.id;
-            method = 'PUT';
-        }
-
-        fetch(apiUrl, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `token ${getToken()}`
-            },
-            body: JSON.stringify(recipe),
-        })
-            .then(response => response.json())
-            .then((data) => {
-                setIsLoading(false);
-                setNewRecipeId(data['insertId']);
-                setRecipeFormIsVisible(false);
-                setIngredientFormIsVisible(true);
+            fetch(RECIPE_API, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `token ${getToken()}`
+                },
+                body: JSON.stringify(recipe),
             })
-            .catch(error => console.log('Error: ', error))
+                .then(response => response.json())
+                .then((data) => {
+                    setIsLoading(false);
+                    setNewRecipeId(data['insertId']);
+                    setRecipeFormIsVisible(false);
+                    setIngredientFormIsVisible(true);
+                })
+                .catch(error => console.log('Error: ', error))
+        } else {
+            fetch(`${RECIPE_API}/${recipeId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `token ${getToken()}`
+                },
+                body: JSON.stringify(recipe),
+            })
+                .then(() => {
+                    setIsLoading(false);
+                    setRecipeFormIsVisible(false);
+                    setIngredientFormIsVisible(true);
+                })
+                .catch(error => console.log('Error: ', error))
+        }
     }
 
     return (
@@ -97,7 +104,10 @@ const RecipeForm = ({ type }) => {
                         {ingredients &&
                             <ul>
                                 {ingredients.map((ingredient, index) => (
-                                    <li key={index}>{ingredient.quantity} {ingredient.name} - {ingredient.notes}</li>
+                                    <li key={index}>
+                                        {ingredient.quantity} {ingredient.name} - {ingredient.notes}
+                                        {/* <button>Delete</button> */}
+                                    </li>
                                 ))}
                             </ul>
                         }
@@ -134,6 +144,7 @@ const RecipeForm = ({ type }) => {
                                 <IngredientForm
                                     handleUpdateIngredients={handleUpdateIngredients}
                                     newRecipeId={newRecipeId}
+                                    recipeId={recipeId}
                                     setIngredientFormIsVisible={setIngredientFormIsVisible}
                                     setStepFormIsVisible={setStepFormIsVisible}
                                 />

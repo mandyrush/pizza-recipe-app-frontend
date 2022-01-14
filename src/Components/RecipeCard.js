@@ -15,6 +15,7 @@ const RecipeCard = ({
     const [ratings, setRatings] = useState([]);
     const [averageRatings, setAverageRatings] = useState(0);
 
+    // Get all of the ratings for this recipe
     useEffect(() => {
         fetch(RATINGS_API + `?recipe=${recipe.id}`, {
             headers: {
@@ -26,6 +27,7 @@ const RecipeCard = ({
             .catch(error => console.log('Failed to fetch ratings: ', error))
     }, [])
 
+    // Create the ratings score based on the average of all of the ratings from this recipe
     useEffect(() => {
         let ratingsArray = [...ratings];
         let total = 0;
@@ -42,6 +44,7 @@ const RecipeCard = ({
         setAverageData();
     }, [averageRatings])
 
+    // Pass the average data back to the project
     const setAverageData = () => {
         let data = {
             recipeId: recipe.id,
