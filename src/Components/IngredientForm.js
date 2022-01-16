@@ -12,7 +12,9 @@ const IngredientForm = ({
     setStepFormIsVisible
 }) => {
     const [ingredient, setIngredient] = useState({
+        id: '',
         name: '',
+        ingredient_id: '',
         recipe_id: newRecipeId || recipeId,
         quantity: '',
         notes: ''
@@ -38,11 +40,24 @@ const IngredientForm = ({
             },
             body: JSON.stringify(ingredient)
         })
+            .then(response => response.json())
             .then(data => {
-                handleUpdateIngredients(ingredient);
                 setIngredient({
+                    ...ingredient,
+                    id: data.recipe_ingredient_id,
+                    ingredient_id: data.ingredientId
+                })
+                let newIngredient = {
+                    ...ingredient,
+                    id: data.recipe_ingredient_id,
+                    ingredient_id: data.ingredientId
+                };
+                handleUpdateIngredients(newIngredient);
+                setIngredient({
+                    id: '',
                     name: '',
-                    recipe_id: newRecipeId,
+                    ingredient_id: '',
+                    recipe_id: newRecipeId || recipeId,
                     quantity: '',
                     notes: ''
                 })

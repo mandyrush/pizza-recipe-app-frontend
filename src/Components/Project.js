@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getToken } from "../helpers";
 
 import RecipeCard from "./RecipeCard";
@@ -9,15 +9,28 @@ import RecipeCard from "./RecipeCard";
 import styles from './Project.module.css';
 
 const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
+const PROJECT_API = `https://pizza-recipe-app.herokuapp.com/projects`;
 
 const Project = () => {
+    const [project, setProject] = useState([]);
     const [recipes, setRecipes] = useState([]);
     const [recipeAverages, setRecipeAverages] = useState([]);
     const [highestRating, setHighestRating] = useState({});
     const [showRatingBanner, setShowRatingBanner] = useState(false);
 
-    const location = useLocation();
     const { id } = useParams();
+
+    // Get project info
+    useEffect(() => {
+        fetch(`${PROJECT_API}/${id}`, {
+            headers: {
+                'Authorization': `token ${getToken()}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => setProject(data[0]))
+            .catch(error => console.log('Failed to fetch project: ', error))
+    }, [])
 
     // Get recipes for this project
     useEffect(() => {
@@ -89,8 +102,8 @@ const Project = () => {
                 )
             }
             <header>
-                {location.state.project && (
-                    <h1>{location.state.project.name}</h1>
+                {project && (
+                    <h1>{project.name}</h1>
                 )}
             </header>
             <div className="interior-content">
@@ -102,7 +115,7 @@ const Project = () => {
                             key={index}
                             recipe={recipe}
                             handleDelete={handleDelete}
-                            project={location.state.project}
+                            project={project}
                             updateAverage={updateAverage}
                             highestRating={highestRating.recipeId === recipe.id} />
                     ))
@@ -112,7 +125,7 @@ const Project = () => {
                     recipes.length <= 0 && (
                         <div>
                             <p>Create a new version to get started!</p>
-                            <Link to={`/project/${location.state.project.id}/recipe/create`}>Create</Link>
+                            <Link to={`/project/${project.id}/recipe/create`}>Create</Link>
                         </div>
                     )
                 }

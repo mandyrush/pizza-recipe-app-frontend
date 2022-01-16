@@ -9,6 +9,8 @@ import IngredientForm from "./IngredientForm";
 import StepForm from './StepForm';
 
 const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
+const INGREDIENTS_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
+const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
 
 const RecipeForm = ({ type }) => {
     const { projectId, recipeId } = useParams();
@@ -34,6 +36,18 @@ const RecipeForm = ({ type }) => {
     useEffect(() => {
         if (type === 'update') {
             setRecipe(location.state.recipe);
+
+            // Get any ingredients for this recipe
+            fetch(`${INGREDIENTS_API}?recipe=${location.state.recipe.id}`)
+                .then(response => response.json())
+                .then(data => setIngredients(data))
+                .catch(error => console.log('Failed to fetch ingredients: ', error))
+
+            // Get any steps for this recipe
+            fetch(`${STEP_API}?recipe=${location.state.recipe.id}`)
+                .then(response => response.json())
+                .then(data => setSteps(data))
+                .catch(error => console.log('Failed to fetch steps: ', error))
         }
     }, [])
 
@@ -42,9 +56,50 @@ const RecipeForm = ({ type }) => {
         setIngredients(newIngredients);
     }
 
+    const handleDeleteIngredient = (e, ingredient) => {
+        e.preventDefault();
+
+        fetch(INGREDIENTS_API, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
+            },
+            body: JSON.stringify({
+                recipe_ingredient_id: ingredient.id,
+                ingredient_id: ingredient.ingredient_id
+            }),
+        })
+            .then(response => {
+                let newIngredients = [...ingredients];
+                newIngredients = newIngredients.filter(i => i.id !== ingredient.id);
+                setIngredients(newIngredients);
+            })
+    }
+
     const handleUpdateSteps = (step) => {
         let newSteps = [...steps, step];
         setSteps(newSteps);
+    }
+
+    const handleDeleteStep = (e, id) => {
+        e.preventDefault();
+
+        fetch(`${STEP_API}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `token ${getToken()}`
+            }
+        })
+            .then(response => {
+                let newSteps = [...steps];
+                newSteps = newSteps.filter(step => step.id !== id);
+                setSteps(newSteps);
+            })
+            .catch(error => console.log('Failed to delete step: ', error))
     }
 
     const handleSubmit = () => {
@@ -106,7 +161,7 @@ const RecipeForm = ({ type }) => {
                                 {ingredients.map((ingredient, index) => (
                                     <li key={index}>
                                         {ingredient.quantity} {ingredient.name} - {ingredient.notes}
-                                        {/* <button>Delete</button> */}
+                                        <button onClick={(e) => handleDeleteIngredient(e, ingredient)}>Delete</button>
                                     </li>
                                 ))}
                             </ul>
@@ -115,7 +170,10 @@ const RecipeForm = ({ type }) => {
                         {steps &&
                             <ul>
                                 {steps.map((step, index) => (
-                                    <li key={index}>{step.step}</li>
+                                    <li key={index}>
+                                        {step.step}
+                                        <button onClick={(e) => handleDeleteStep(e, step.id)}>Delete</button>
+                                    </li>
                                 ))}
                             </ul>
                         }
@@ -140,7 +198,6 @@ const RecipeForm = ({ type }) => {
                         {ingredientFormIsVisible && (
                             <div>
                                 <h2>Ingredients</h2>
-
                                 <IngredientForm
                                     handleUpdateIngredients={handleUpdateIngredients}
                                     newRecipeId={newRecipeId}
@@ -157,6 +214,8 @@ const RecipeForm = ({ type }) => {
                                 <StepForm
                                     handleUpdateSteps={handleUpdateSteps}
                                     newRecipeId={newRecipeId}
+                                    recipeId={recipeId}
+                                    projectId={projectId}
                                 />
                             </div>
                         )}

@@ -13,3 +13,8 @@ export function getToken() {
     const cookies = cookie.parse(document.cookie);
     return cookies['token'];
 }
+
+export function getUserId() {
+    const cookies = cookie.parse(document.cookie);
+    return cookies['userId'];
+}

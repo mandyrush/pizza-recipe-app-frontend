@@ -1,21 +1,25 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getToken } from "../helpers";
 
 const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
 
-const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
+const StepForm = ({
+    handleUpdateSteps,
+    newRecipeId,
+    recipeId,
+    projectId
+}) => {
     const [step, setStep] = useState({
+        id: '',
         step: '',
-        recipe_id: newRecipeId,
+        recipe_id: newRecipeId || recipeId,
         step_order: ''
     });
 
-    const { projectId } = useParams();
-
     useEffect(() => {
-        setStep({ ...step, recipe_id: newRecipeId })
+        setStep({ ...step, recipe_id: newRecipeId || recipeId })
     }, [newRecipeId])
 
     const handleAddStep = (event) => {
@@ -29,11 +33,15 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
             },
             body: JSON.stringify(step)
         })
+            .then(response => response.json())
             .then(data => {
-                handleUpdateSteps(step);
+                setStep({ ...step, id: data.stepId })
+                let newStep = { ...step, id: data.stepId }
+                handleUpdateSteps(newStep);
                 setStep({
+                    id: '',
                     step: '',
-                    recipe_id: newRecipeId,
+                    recipe_id: newRecipeId || recipeId,
                     step_order: ''
                 })
             })
@@ -45,7 +53,7 @@ const StepForm = ({ handleUpdateSteps, newRecipeId }) => {
             <label htmlFor="step">Step</label>
             <input type="text" name="step" id="step" value={step.step} onChange={(event) => setStep({ ...step, step: event.target.value })} />
             <button onClick={(event) => handleAddStep(event)}>Add Step</button>
-            <Link to={'/dashboard'}>Finish</Link>
+            <Link to={`/project/${projectId}`}>Finish</Link>
         </form>
     )
 }

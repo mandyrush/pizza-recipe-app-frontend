@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
-import { getToken } from "../helpers";
+import { getToken, getUserId } from "../helpers";
 
 import styles from './ProjectForm.module.css';
 
@@ -11,7 +11,8 @@ const PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects';
 const ProjectForm = ({ type }) => {
     const [project, setProject] = useState({
         name: '',
-        featured_image_id: null
+        featured_image_id: null,
+        user_id: getUserId()
     });
     const [isLoading, setIsLoading] = useState(false);
 

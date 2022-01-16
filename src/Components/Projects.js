@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { getToken } from "../helpers";
+import { getToken, getUserId } from "../helpers";
 
 import ProjectCard from "./ProjectCard";
 
@@ -31,7 +31,7 @@ const Projects = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(FETCH_ALL_PROJECTS_API, {
+        fetch(`${FETCH_ALL_PROJECTS_API}?user_id=${getUserId()}`, {
             headers: {
                 'Authorization': `token ${getToken()}`
             }
