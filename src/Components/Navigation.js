@@ -17,7 +17,6 @@ const Navigation = () => {
 
     return (
         <div className={styles.navbar}>
-            <h1>Pizza Recipe App</h1>
             <nav>
                 <Link to="/" className={styles.navLink}>Home</Link>
                 {checkAuth() && (

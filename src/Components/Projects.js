@@ -45,18 +45,23 @@ const Projects = () => {
     }, []);
 
     return (
-        <div>
+        <section>
             <h1>My Pizzas</h1>
             {isLoading && <p>Making Pizzas...</p>}
             <div className={styles.projectCards}>
                 {projects.map((project, index) => {
                     return (
-                        <ProjectCard project={project} key={index} removeProject={removeProject} />
+                        <ProjectCard
+                            project={project}
+                            key={index}
+                            removeProject={removeProject}
+                            randomNumber={Math.floor(Math.random() * 4) + 1}
+                        />
                     )
                 })}
             </div>
             <Link to={'/project/create'} >Create Pizza</Link>
-        </div>
+        </section>
     );
 }
 

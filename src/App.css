@@ -1,12 +1,97 @@
-a {
-    padding: 0.5rem;
+/*************** 
+Colors 
+**************/
+:root {
+    /* Colors */
+    --color-white: #fff;
+    --color-primary: #485320;
+    --color-primary-light: #d9e2b6;
+    --color-accent: #B23818;
+    --color-accent-light: #f9dad2;
+    --color-accent-dark: #9d3115;
+    --color-charcoal: #404042;
+
+    /* Fonts */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-accent: 'Dancing Script', cursive;
 }
 
+body {
+    font-family: var(--font-primary);
+    color: var(--color-charcoal);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/*************** 
+Buttons
+**************/
+button {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+button:hover,
+button:active,
+button:focus {
+    background-color: var(--color-accent-dark);
+}
+
+/*************** 
+Links
+**************/
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: var(--color-accent-dark);
+}
+
+/*************** 
+Forms
+**************/
 form {
     display: flex;
     flex-direction: column;
     width: 50%;
     margin: auto;
+}
+
+form input {
+    margin-bottom: 0.5rem;
+    padding: 0.25rem;
+    border-width: 1px;
+    border-color: var(--color-charcoal);
+}
+
+form button {
+    margin-top: 0.5rem;
+}
+
+/*************** 
+Content
+**************/
+section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .interior-content {

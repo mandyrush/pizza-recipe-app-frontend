@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
 
@@ -50,6 +50,7 @@ const LoginForm = () => {
         <div className={styles.login}>
             <form>
                 <h2>Login</h2>
+                <label htmlFor="username">Username</label>
                 <input
                     type="text"
                     name="username"
@@ -58,7 +59,7 @@ const LoginForm = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     name="password"
@@ -67,8 +68,8 @@ const LoginForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <label htmlFor="password">Password</label>
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                <Link to={'/register'}>Register</Link>
             </form>
             {
                 isLoading && (

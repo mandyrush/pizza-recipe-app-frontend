@@ -1,7 +1,7 @@
 .homeLayout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: 100vh;
+    height: calc(100vh - 56px);
 }
 
 .logo {
@@ -10,4 +10,15 @@
     justify-content: center;
     align-items: center;
     border-right: 1px solid #000;
+    background: url('/public/images/backgrounds/home_bkgd.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.logo h1 {
+    font-family: var(--font-accent);
+    color: var(--color-white);
+    font-size: 5rem;
+    text-align: center;
+    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+    line-height: 1.2;
 }

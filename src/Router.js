@@ -9,6 +9,7 @@ import ProjectForm from "./Components/ProjectForm";
 import Recipe from "./Components/Recipe";
 import RecipeForm from './Components/RecipeForm';
 import Rate from './Components/Rate';
+import Register from "./Components/Regsister";
 
 
 const ProtectedRoute = ({ children }) => {
@@ -19,6 +20,7 @@ const Router = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
 
             {/* Projects Routes */}
             <Route

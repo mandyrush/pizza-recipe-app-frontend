@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div className={styles.homeLayout}>
             <div className={styles.logo}>
-                <h1>Logo</h1>
+                <h1>Pizza Recipe<br></br>Builder</h1>
             </div>
             <LoginForm />
         </div>
