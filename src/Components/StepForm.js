@@ -40,8 +40,6 @@ const StepForm = ({
                 })
                     .catch(error => console.log('Failed to clone steps'))
             });
-        } else {
-            console.log('No steps to clone');
         }
     }, [])
 
@@ -72,12 +70,22 @@ const StepForm = ({
     }
 
     return (
-        <form>
-            <label htmlFor="step">Step</label>
-            <input type="text" name="step" id="step" value={step.step} onChange={(event) => setStep({ ...step, step: event.target.value })} />
-            <button onClick={(event) => handleAddStep(event)}>Add Step</button>
+        <div>
+            <form>
+                <label htmlFor="step">Step</label>
+                <input
+                    type="text"
+                    name="step"
+                    id="step"
+                    value={step.step}
+                    onChange={(event) => setStep({ ...step, step: event.target.value })}
+                />
+                <button onClick={(event) => handleAddStep(event)}>
+                    Add Step
+                </button>
+            </form>
             <Link to={`/project/${projectId}`}>Finish</Link>
-        </form>
+        </div>
     )
 }
 

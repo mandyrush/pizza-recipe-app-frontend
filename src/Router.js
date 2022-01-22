@@ -7,7 +7,7 @@ import Dashboard from "./Components/Dashboard";
 import Project from "./Components/Project";
 import ProjectForm from "./Components/ProjectForm";
 import Recipe from "./Components/Recipe";
-import RecipeForm from './Components/RecipeForm';
+import RecipeManager from './Components/RecipeManager';
 import Rate from './Components/Rate';
 import Register from "./Components/Register";
 
@@ -69,7 +69,7 @@ const Router = () => {
                 path="/project/:projectId/recipe/create"
                 element={
                     <ProtectedRoute>
-                        <RecipeForm type="create" />
+                        <RecipeManager type="create" />
                     </ProtectedRoute>
                 }
             />
@@ -77,7 +77,7 @@ const Router = () => {
                 path="/project/:projectId/recipe/clone/:recipeId"
                 element={
                     <ProtectedRoute>
-                        <RecipeForm type="clone" />
+                        <RecipeManager type="clone" />
                     </ProtectedRoute>
                 }
             />
@@ -85,7 +85,7 @@ const Router = () => {
                 path="/project/:projectId/recipe/update/:recipeId"
                 element={
                     <ProtectedRoute>
-                        <RecipeForm type="update" />
+                        <RecipeManager type="update" />
                     </ProtectedRoute>
                 }
             />
