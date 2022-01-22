@@ -74,6 +74,14 @@ const Router = () => {
                 }
             />
             <Route
+                path="/project/:projectId/recipe/clone/:recipeId"
+                element={
+                    <ProtectedRoute>
+                        <RecipeForm type="clone" />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
                 path="/project/:projectId/recipe/update/:recipeId"
                 element={
                     <ProtectedRoute>

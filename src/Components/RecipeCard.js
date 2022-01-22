@@ -93,7 +93,12 @@ const RecipeCard = ({
             <button onClick={() => handleDelete(recipe.id)}>Delete</button>
             {
                 highestRating && (
-                    <Link to={`/project/${project.id}/recipe/create`}>Create New Version</Link>
+                    <Link
+                        to={`/project/${project.id}/recipe/clone/${recipe.id}`}
+                        state={{ recipe: recipe }}
+                    >
+                        Create New Version
+                    </Link>
                 )
             }
             <hr />

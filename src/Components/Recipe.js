@@ -82,8 +82,8 @@ const Recipe = () => {
                         <hr />
                         <h2>Notes</h2>
                         <p>{location.state.recipe.notes}</p>
-                        <hr />
-                        <h2>Gallery</h2>
+                        {/* <hr /> */}
+                        {/* <h2>Gallery</h2> */}
                     </div>
                     <div className={styles.ratings}>
                         <h2>Ratings</h2>

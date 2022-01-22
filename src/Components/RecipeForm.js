@@ -34,8 +34,13 @@ const RecipeForm = ({ type }) => {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        if (type === 'update') {
-            setRecipe(location.state.recipe);
+        if (type === 'update' || type === 'clone') {
+
+            if (type === 'clone') {
+                setRecipe({ ...location.state.recipe, name: `Copy of ${location.state.recipe.name}` });
+            } else {
+                setRecipe(location.state.recipe);
+            }
 
             // Get any ingredients for this recipe
             fetch(`${INGREDIENTS_API}?recipe=${location.state.recipe.id}`)
@@ -105,7 +110,7 @@ const RecipeForm = ({ type }) => {
     const handleSubmit = () => {
         setIsLoading(true);
 
-        if (type === 'create') {
+        if (type === 'create' || type === 'clone') {
             fetch(RECIPE_API, {
                 method: 'POST',
                 headers: {
@@ -177,7 +182,7 @@ const RecipeForm = ({ type }) => {
                                 ))}
                             </ul>
                         }
-                        <h2>Gallery</h2>
+                        {/* <h2>Gallery</h2> */}
                     </div>
                     <div className={styles.recipeForms}>
                         {recipeFormIsVisible && (
@@ -204,6 +209,8 @@ const RecipeForm = ({ type }) => {
                                     recipeId={recipeId}
                                     setIngredientFormIsVisible={setIngredientFormIsVisible}
                                     setStepFormIsVisible={setStepFormIsVisible}
+                                    type={type}
+                                    ingredientsToClone={ingredients}
                                 />
                             </div>
                         )}
@@ -216,6 +223,8 @@ const RecipeForm = ({ type }) => {
                                     newRecipeId={newRecipeId}
                                     recipeId={recipeId}
                                     projectId={projectId}
+                                    type={type}
+                                    stepsToClone={steps}
                                 />
                             </div>
                         )}
