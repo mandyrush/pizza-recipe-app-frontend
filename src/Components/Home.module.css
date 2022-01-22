@@ -1,7 +1,7 @@
 .homeLayout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: calc(100vh - 56px);
+    height: calc(100vh - 40px);
 }
 
 .logo {

@@ -9,7 +9,7 @@ import ProjectForm from "./Components/ProjectForm";
 import Recipe from "./Components/Recipe";
 import RecipeForm from './Components/RecipeForm';
 import Rate from './Components/Rate';
-import Register from "./Components/Regsister";
+import Register from "./Components/Register";
 
 
 const ProtectedRoute = ({ children }) => {
