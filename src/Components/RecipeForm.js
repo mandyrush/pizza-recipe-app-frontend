@@ -19,7 +19,7 @@ const RecipeForm = ({
     const handleSubmit = () => {
         setIsLoading(true);
 
-        if (type === 'create' || type === 'clone') {
+        if (type === 'create') {
             fetch(RECIPE_API, {
                 method: 'POST',
                 headers: {

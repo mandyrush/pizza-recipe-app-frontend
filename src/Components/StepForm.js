@@ -9,9 +9,7 @@ const StepForm = ({
     handleUpdateSteps,
     newRecipeId,
     recipeId,
-    projectId,
-    type,
-    stepsToClone
+    projectId
 }) => {
     const [step, setStep] = useState({
         id: '',
@@ -23,25 +21,6 @@ const StepForm = ({
     useEffect(() => {
         setStep({ ...step, recipe_id: newRecipeId || recipeId })
     }, [newRecipeId])
-
-    useEffect(() => {
-        if (type === 'clone' && stepsToClone.length > 0) {
-            stepsToClone.forEach(step => {
-                step['recipe_id'] = newRecipeId;
-
-                fetch(STEP_API, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `token ${getToken()}`
-                    },
-                    body: JSON.stringify(step)
-                })
-                    .catch(error => console.log('Failed to clone steps'))
-            });
-        }
-    }, [])
 
     const handleAddStep = (event) => {
         event.preventDefault();

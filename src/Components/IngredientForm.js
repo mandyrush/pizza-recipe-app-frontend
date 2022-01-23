@@ -9,9 +9,7 @@ const IngredientForm = ({
     newRecipeId,
     recipeId,
     setIngredientFormIsVisible,
-    setStepFormIsVisible,
-    type,
-    ingredientsToClone
+    setStepFormIsVisible
 }) => {
     const [ingredient, setIngredient] = useState({
         id: '',
@@ -25,30 +23,6 @@ const IngredientForm = ({
     useEffect(() => {
         setIngredient({ ...ingredient, recipe_id: newRecipeId || recipeId })
     }, [newRecipeId, recipeId])
-
-    useEffect(() => {
-        if (type === 'clone' && ingredientsToClone.length > 0) {
-            ingredientsToClone.forEach(ingredient => {
-                ingredient['recipe_id'] = newRecipeId;
-
-                fetch(INGREDIENT_API, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': `token ${getToken()}`
-                    },
-                    body: JSON.stringify(ingredient)
-                })
-                    .catch(error => console.log('Failed to clone ingredients'))
-            });
-        }
-    }, [])
-
-    const handleNext = () => {
-        setIngredientFormIsVisible(false);
-        setStepFormIsVisible(true);
-    }
 
     const handleAddIngredient = (event) => {
         event.preventDefault();
@@ -84,6 +58,11 @@ const IngredientForm = ({
                 })
             })
             .catch(error => console.log('Failed to add ingredient: ', error))
+    }
+
+    const handleNext = () => {
+        setIngredientFormIsVisible(false);
+        setStepFormIsVisible(true);
     }
 
     return (

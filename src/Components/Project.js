@@ -117,7 +117,10 @@ const Project = () => {
                             handleDelete={handleDelete}
                             project={project}
                             updateAverage={updateAverage}
-                            highestRating={highestRating.recipeId === recipe.id} />
+                            highestRating={highestRating.recipeId === recipe.id}
+                            setRecipes={setRecipes}
+                            recipes={recipes}
+                        />
                     ))
                 )}
 

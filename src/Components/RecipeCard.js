@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { getToken } from "../helpers";
 
+import RecipeClone from "./RecipeClone";
+
 const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
 
 const RecipeCard = ({
@@ -10,7 +12,9 @@ const RecipeCard = ({
     handleDelete,
     project,
     updateAverage,
-    highestRating
+    highestRating,
+    setRecipes,
+    recipes
 }) => {
     const [ratings, setRatings] = useState([]);
     const [averageRatings, setAverageRatings] = useState(0);
@@ -93,12 +97,12 @@ const RecipeCard = ({
             <button onClick={() => handleDelete(recipe.id)}>Delete</button>
             {
                 highestRating && (
-                    <Link
-                        to={`/project/${project.id}/recipe/clone/${recipe.id}`}
-                        state={{ recipe: recipe }}
-                    >
-                        Create New Version
-                    </Link>
+                    <RecipeClone
+                        recipe={recipe}
+                        projectId={project.id}
+                        setRecipes={setRecipes}
+                        recipes={recipes}
+                    />
                 )
             }
             <hr />

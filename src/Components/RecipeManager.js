@@ -22,24 +22,19 @@ const RecipeManager = ({ type }) => {
         notes: '',
         project_id: projectId
     })
-
     const [newRecipeId, setNewRecipeId] = useState(null);
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
 
+    // Form Visibility
     const [RecipeManagerIsVisible, setRecipeManagerIsVisible] = useState(true);
     const [ingredientFormIsVisible, setIngredientFormIsVisible] = useState(false);
     const [stepFormIsVisible, setStepFormIsVisible] = useState(false);
 
     useEffect(() => {
-        if (type === 'update' || type === 'clone') {
-
-            // If cloning or updating, set the recipe that is being used
-            if (type === 'clone') {
-                setRecipe({ ...location.state.recipe, name: `Copy of ${location.state.recipe.name}` });
-            } else {
-                setRecipe(location.state.recipe);
-            }
+        if (type === 'update') {
+            // Set the recipe that is being used
+            setRecipe(location.state.recipe);
 
             // Get any ingredients for this recipe
             fetch(`${INGREDIENTS_API}?recipe=${location.state.recipe.id}`)
@@ -78,6 +73,8 @@ const RecipeManager = ({ type }) => {
                         steps={steps}
                         setIngredients={setIngredients}
                         setSteps={setSteps}
+                        ingredientFormIsVisible={ingredientFormIsVisible}
+                        stepFormIsVisible={stepFormIsVisible}
                     />
                     <div className={styles.RecipeForms}>
                         {RecipeManagerIsVisible && (
