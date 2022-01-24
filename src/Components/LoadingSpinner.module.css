@@ -13,17 +13,32 @@
     font-weight: 500;
 }
 
-.spinner {
-    position: relative;
+.shadow {
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+
+.crust {
     width: 40px;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c08756;
     border-radius: 50%;
-    border: 5px solid #c08756;
-    background-color: var(--color-accent);
+    border: 6px dotted #a86f3e;
     animation-name: spin;
     animation-duration: 5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+}
+
+.pizza {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
 }
 
 @keyframes spin {
@@ -43,6 +58,7 @@
 .basil {
     position: absolute;
     background-color: var(--color-primary);
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
     width: 5px;
     height: 8px;
 }

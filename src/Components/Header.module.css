@@ -1,0 +1,19 @@
+.header {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.headingBorderTop {
+    height: 3px;
+    width: 150px;
+    margin: auto;
+    background: linear-gradient(to right, var(--color-white), var(--color-primary) 50%, var(--color-accent) 50%, var(--color-white));
+}
+
+.headingBorderBottom {
+    height: 3px;
+    width: 250px;
+    margin: auto;
+    background: linear-gradient(to right, var(--color-white), var(--color-accent) 50%, var(--color-primary) 50%, var(--color-white));
+}

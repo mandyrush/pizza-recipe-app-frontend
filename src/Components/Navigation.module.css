@@ -1,7 +1,10 @@
 .navbar {
+    position: relative;
+    z-index: 100;
     text-align: right;
     background-color: var(--color-primary);
     padding: 0.5rem;
+    box-shadow: 0 0 12px rgba(0,0,0,0.6);
 }
 
 .navbar button {

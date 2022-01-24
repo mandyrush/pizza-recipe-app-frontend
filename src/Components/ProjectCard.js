@@ -21,17 +21,17 @@ const ProjectCard = ({
                     to={`/project/${project.id}`}
                     state={{ project: project }}
                 >
-                    <i className="fas fa-eye"></i>
+                    <i className="fas fa-eye"></i> View
                 </Link>
                 <Link
                     className={styles.link}
                     to={`/project/update/${project.id}`}
                     state={{ project: project }}
                 >
-                    <i className="fas fa-pencil-alt"></i>
+                    <i className="fas fa-pencil-alt"></i> Edit
                 </Link>
                 <button className={styles.link} onClick={() => removeProject(project.id)}>
-                    <i className="fas fa-trash-alt"></i>
+                    <i className="fas fa-trash-alt"></i> Delete
                 </button>
             </div>
         </article>

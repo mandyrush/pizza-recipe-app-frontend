@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { getToken, getUserId } from "../helpers";
 
+import Header from "./Header";
 import ProjectCard from "./ProjectCard";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -46,27 +47,31 @@ const Projects = () => {
     }, []);
 
     return (
-        <section>
-            <h1>My Pizzas</h1>
+        <div>
+            <Header title={'My Pizzas'} />
+            <section className="container">
+                <div className={styles.projectCards}>
+                    <article className={styles.ghostCard}>
+                        <Link to={'/project/create'} className="btn-primary" >Create Pizza</Link>
+                    </article>
+                    {projects.map((project, index) => {
+                        return (
+                            <ProjectCard
+                                project={project}
+                                key={index}
+                                removeProject={removeProject}
+                                randomNumber={Math.floor(Math.random() * 4) + 1}
+                            />
+                        )
+                    })}
+                </div>
+            </section>
             {isLoading && (
                 <LoadingSpinner
                     message={'Making Pizzas...'}
                 />
             )}
-            <div className={styles.projectCards}>
-                {projects.map((project, index) => {
-                    return (
-                        <ProjectCard
-                            project={project}
-                            key={index}
-                            removeProject={removeProject}
-                            randomNumber={Math.floor(Math.random() * 4) + 1}
-                        />
-                    )
-                })}
-            </div>
-            <Link to={'/project/create'} >Create Pizza</Link>
-        </section>
+        </div>
     );
 }
 

@@ -98,7 +98,7 @@ const Project = () => {
         <div>
             {
                 showRatingBanner && (
-                    <p>You have recipes to rate!</p>
+                    <p className={styles.ratingBanner}>You have recipes to rate!</p>
                 )
             }
             <header>

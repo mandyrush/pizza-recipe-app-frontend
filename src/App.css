@@ -10,6 +10,7 @@ Colors
     --color-accent-light: #f9dad2;
     --color-accent-dark: #9d3115;
     --color-charcoal: #404042;
+    --color-charcoal-light: #bebec1;
     --color-error: #e35835;
 
     /* Fonts */
@@ -23,8 +24,8 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-family: var(--font-accent);
+    font-size: 3rem;
 }
 
 h2 {
@@ -32,10 +33,54 @@ h2 {
     font-size: 1.5rem;
 }
 
+section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.container {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1320px;
+    }
+  }
+
 /*************** 
 Buttons
 **************/
-button {
+button,
+.btn-primary {
     background-color: var(--color-accent);
     color: #fff;
     border: none;
@@ -44,12 +89,17 @@ button {
     font-weight: 500;
     letter-spacing: 2px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
 }
 
 button:hover,
 button:active,
-button:focus {
+button:focus,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
     background-color: var(--color-accent-dark);
+    color: var(--color-white);
 }
 
 /*************** 
@@ -58,6 +108,7 @@ Links
 a {
     color: var(--color-accent);
     text-decoration: none;
+    transition: all .2s ease-in-out;
 }
 
 a:hover,
@@ -97,16 +148,4 @@ form input {
 
 form button {
     margin-top: 0.5rem;
-}
-
-/*************** 
-Content
-**************/
-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-}
-
-.interior-content {
-    padding: 1rem;
 }

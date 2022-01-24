@@ -49,7 +49,7 @@ const Register = () => {
     return (
         <section className={styles.register}>
             <form>
-                <h2>Login</h2>
+                <h2>Register</h2>
                 <label htmlFor="username">Username</label>
                 <input
                     type="text"
