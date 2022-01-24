@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getToken, getUserId } from "../helpers";
 
 import ProjectCard from "./ProjectCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './Projects.module.css';
 
@@ -47,7 +48,11 @@ const Projects = () => {
     return (
         <section>
             <h1>My Pizzas</h1>
-            {isLoading && <p>Making Pizzas...</p>}
+            {isLoading && (
+                <LoadingSpinner
+                    message={'Making Pizzas...'}
+                />
+            )}
             <div className={styles.projectCards}>
                 {projects.map((project, index) => {
                     return (

@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from './RecipeForm.module.css';
 
 import { getToken } from "../helpers";
+import LoadingSpinner from "./LoadingSpinner";
 
 const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
 
@@ -83,7 +84,11 @@ const RecipeForm = ({
                 </button>
 
             </form>
-            {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
+            {isLoading && (
+                <LoadingSpinner
+                    message={type === 'create' ? 'Creating...' : 'Updating...'}
+                />
+            )}
         </div>
     )
 }

@@ -1,0 +1,94 @@
+.loadingContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    font-weight: 500;
+}
+
+.spinner {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 5px solid #c08756;
+    background-color: var(--color-accent);
+    animation-name: spin;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(-360deg);
+    }
+}
+
+.cheese {
+    position: absolute;
+    background-color: var(--color-white);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.basil {
+    position: absolute;
+    background-color: var(--color-primary);
+    width: 5px;
+    height: 8px;
+}
+
+.cheeseOne {
+    top: 20%;
+    left: 15%;
+}
+
+.cheeseTwo {
+    top: 20%;
+    right: 15%;
+}
+
+.cheeseThree {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.basilOne {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 5px;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) rotate(15deg);
+}
+
+.basilTwo {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 5px;
+    bottom: 20%;
+    right: 20%;
+    transform: rotate(-30deg);
+}
+
+.basilThree {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 20px;
+    bottom: 20%;
+    left: 20%;
+    transform: rotate(30deg);
+}

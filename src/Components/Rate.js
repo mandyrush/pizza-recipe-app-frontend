@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getToken } from "../helpers";
 
 import RatingFields from "./RatingFields";
+import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './Rating.module.css';
 
@@ -72,7 +73,11 @@ const Rate = () => {
                 {/* <p>{location.state.project.name} - {location.state.recipe.name}</p> */}
             </header>
             <div className="interior-content">
-                {isLoading && <p>Calculating Rating...</p>}
+                {isLoading && (
+                    <LoadingSpinner
+                        message={'Calculating Rating...'}
+                    />
+                )}
                 <form>
                     {
                         ratingCategories.length > 0 && ratingCategories.map((category, index) => (

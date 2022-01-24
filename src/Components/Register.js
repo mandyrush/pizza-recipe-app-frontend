@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Register.module.css';
+import LoadingSpinner from './LoadingSpinner';
 
 const REGISTER_API = 'https://pizza-recipe-app.herokuapp.com/users';
 
@@ -80,7 +81,9 @@ const Register = () => {
             </form>
             {
                 isLoading && (
-                    <p>Processing...</p>
+                    <LoadingSpinner
+                        message={'Registering...'}
+                    />
                 )
             }
             {

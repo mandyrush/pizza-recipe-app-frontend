@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import styles from './LoginForm.module.css';
 
+import LoadingSpinner from "./LoadingSpinner";
+
 const LOGIN_API = 'https://pizza-recipe-app.herokuapp.com/login';
 
 const LoginForm = () => {
@@ -56,7 +58,10 @@ const LoginForm = () => {
                     name="username"
                     id="username"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => {
+                        setUsername(e.target.value);
+                        setLoginError('');
+                    }}
                     required
                 />
                 <label htmlFor="password">Password</label>
@@ -65,22 +70,26 @@ const LoginForm = () => {
                     name="password"
                     id="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                        setLoginError('');
+                    }}
                     required
                 />
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
                 <Link to={'/register'}>Register</Link>
+                {
+                    loginError !== '' && (
+                        <p className="messageError">{loginError}</p>
+                    )
+                }
             </form>
             {
                 isLoading && (
-                    <p>Processing...</p>
+                    <LoadingSpinner message="Loading..." />
                 )
             }
-            {
-                loginError !== '' && (
-                    <p>{loginError}</p>
-                )
-            }
+
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 import { getToken, getUserId } from "../helpers";
+import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './ProjectForm.module.css';
 
@@ -77,7 +78,11 @@ const ProjectForm = ({ type }) => {
                     {/* <p>Upload Project Image <button>Upload</button></p> */}
                     <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
                     <Link to={'/dashboard'} >Cancel</Link>
-                    {isLoading && (<p>{type === 'create' ? 'Creating' : 'Updating'}...</p>)}
+                    {isLoading && (
+                        <LoadingSpinner
+                            message={type === 'create' ? 'Creating...' : 'Updating...'}
+                        />
+                    )}
                 </form>
             </div>
         </div>

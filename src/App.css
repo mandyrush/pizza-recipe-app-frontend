@@ -10,6 +10,7 @@ Colors
     --color-accent-light: #f9dad2;
     --color-accent-dark: #9d3115;
     --color-charcoal: #404042;
+    --color-error: #e35835;
 
     /* Fonts */
     --font-primary: 'Montserrat', sans-serif;
@@ -63,6 +64,18 @@ a:hover,
 a:active,
 a:focus {
     color: var(--color-accent-dark);
+}
+
+/*************** 
+Messages
+**************/
+.messageError {
+    border: 1px solid var(--color-error);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background-color: var(--color-accent-light);
+    text-align: center;
 }
 
 /*************** 
