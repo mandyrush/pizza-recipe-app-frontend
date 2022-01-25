@@ -51,6 +51,7 @@ const StepForm = ({
     return (
         <div>
             <form>
+                <h2>Steps</h2>
                 <label htmlFor="step">Step</label>
                 <input
                     type="text"
@@ -63,7 +64,7 @@ const StepForm = ({
                     Add Step
                 </button>
             </form>
-            <Link to={`/project/${projectId}`}>Finish</Link>
+            <Link to={`/project/${projectId}`} className="btn-primary">Finish</Link>
         </div>
     )
 }

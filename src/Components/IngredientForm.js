@@ -68,6 +68,7 @@ const IngredientForm = ({
     return (
         <div>
             <form>
+                <h2>Ingredients</h2>
                 <label htmlFor="ingredientQuantity">Quantity</label>
                 <input
                     type="text"

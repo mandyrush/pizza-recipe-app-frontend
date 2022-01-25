@@ -1,9 +1,9 @@
 .navbar {
     position: relative;
     z-index: 100;
-    text-align: right;
+    text-align: center;
     background-color: var(--color-primary);
-    padding: 0.5rem;
+    padding: 0.75rem;
     box-shadow: 0 0 12px rgba(0,0,0,0.6);
 }
 
@@ -34,3 +34,8 @@
     color: var(--color-primary-light);
 }
 
+@media (min-width: 768px) {
+    .navbar {
+        text-align: right;
+    }
+}

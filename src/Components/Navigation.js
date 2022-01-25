@@ -17,15 +17,17 @@ const Navigation = () => {
 
     return (
         <div className={styles.navbar}>
-            <nav>
-                <Link to="/" className={styles.navLink}>Home</Link>
-                {checkAuth() && (
-                    <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
-                )}
-                {checkAuth() && (
-                    <button onClick={(e) => handleLogout(e)} className={styles.navLink}>Logout</button>
-                )}
-            </nav>
+            <div className="container">
+                <nav>
+                    <Link to="/" className={styles.navLink}>Home</Link>
+                    {checkAuth() && (
+                        <Link to="/dashboard" className={styles.navLink}>Dashboard</Link>
+                    )}
+                    {checkAuth() && (
+                        <button onClick={(e) => handleLogout(e)} className={styles.navLink}>Logout</button>
+                    )}
+                </nav>
+            </div>
         </div>
     );
 }

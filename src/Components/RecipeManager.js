@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
 import styles from './RecipeManager.module.css';
-
+import Header from './Header';
 import RecipePreview from "./RecipePreview";
 import RecipeForm from "./RecipeForm";
 import IngredientForm from "./IngredientForm";
@@ -61,12 +61,54 @@ const RecipeManager = ({ type }) => {
     }
 
     return (
-        <div>
-            <header>
-                <h1>{CapitalizeFirstLetter(type)} Recipe</h1>
-            </header>
-            <div className="interior-content">
+        <main>
+            <Header title={`${CapitalizeFirstLetter(type)} Recipe`} />
+            <div className="container">
+                <Link
+                    to={`/project/${projectId}`}
+                    state={{
+                        project: location.state.project
+                    }}
+                >
+                    Back
+                </Link>
                 <div className={styles.layout}>
+                    {RecipeManagerIsVisible && (
+                        <RecipeForm
+                            recipe={recipe}
+                            setRecipe={setRecipe}
+                            type={type}
+                            setNewRecipeId={setNewRecipeId}
+                            setRecipeManagerIsVisible={setRecipeManagerIsVisible}
+                            setIngredientFormIsVisible={setIngredientFormIsVisible}
+                        />
+                    )}
+
+                    {ingredientFormIsVisible && (
+                        <IngredientForm
+                            handleUpdateIngredients={handleUpdateIngredients}
+                            newRecipeId={newRecipeId}
+                            recipeId={recipeId}
+                            setIngredientFormIsVisible={setIngredientFormIsVisible}
+                            setStepFormIsVisible={setStepFormIsVisible}
+                            type={type}
+                            ingredientsToClone={ingredients}
+                        />
+                    )}
+
+                    {stepFormIsVisible && (
+                        <StepForm
+                            handleUpdateSteps={handleUpdateSteps}
+                            newRecipeId={newRecipeId}
+                            recipeId={recipeId}
+                            projectId={projectId}
+                            type={type}
+                            stepsToClone={steps}
+                        />
+                    )}
+
+                    {/* <h2>Gallery</h2> */}
+
                     <RecipePreview
                         recipe={recipe}
                         ingredients={ingredients}
@@ -76,54 +118,9 @@ const RecipeManager = ({ type }) => {
                         ingredientFormIsVisible={ingredientFormIsVisible}
                         stepFormIsVisible={stepFormIsVisible}
                     />
-                    <div className={styles.RecipeForms}>
-                        {RecipeManagerIsVisible && (
-                            <div>
-                                <RecipeForm
-                                    recipe={recipe}
-                                    setRecipe={setRecipe}
-                                    type={type}
-                                    setNewRecipeId={setNewRecipeId}
-                                    setRecipeManagerIsVisible={setRecipeManagerIsVisible}
-                                    setIngredientFormIsVisible={setIngredientFormIsVisible}
-                                />
-                            </div>
-                        )}
-
-                        {ingredientFormIsVisible && (
-                            <div>
-                                <h2>Ingredients</h2>
-                                <IngredientForm
-                                    handleUpdateIngredients={handleUpdateIngredients}
-                                    newRecipeId={newRecipeId}
-                                    recipeId={recipeId}
-                                    setIngredientFormIsVisible={setIngredientFormIsVisible}
-                                    setStepFormIsVisible={setStepFormIsVisible}
-                                    type={type}
-                                    ingredientsToClone={ingredients}
-                                />
-                            </div>
-                        )}
-
-                        {stepFormIsVisible && (
-                            <div>
-                                <h2>Steps</h2>
-                                <StepForm
-                                    handleUpdateSteps={handleUpdateSteps}
-                                    newRecipeId={newRecipeId}
-                                    recipeId={recipeId}
-                                    projectId={projectId}
-                                    type={type}
-                                    stepsToClone={steps}
-                                />
-                            </div>
-                        )}
-
-                        {/* <h2>Gallery</h2> */}
-                    </div>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
 

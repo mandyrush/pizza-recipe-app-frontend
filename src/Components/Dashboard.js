@@ -5,7 +5,9 @@ import Projects from './Projects';
 
 const Dashboard = () => {
     return (
-        <Projects />
+        <main>
+            <Projects />
+        </main>
     );
 }
 

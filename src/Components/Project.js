@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { getToken } from "../helpers";
 
 import RecipeCard from "./RecipeCard";
+import Header from "./Header";
 
 import styles from './Project.module.css';
 
@@ -95,20 +96,15 @@ const Project = () => {
     }
 
     return (
-        <div>
+        <main>
             {
                 showRatingBanner && (
                     <p className={styles.ratingBanner}>You have recipes to rate!</p>
                 )
             }
-            <header>
-                {project && (
-                    <h1>{project.name}</h1>
-                )}
-            </header>
-            <div className="interior-content">
-                <h2>Pizza Versions</h2>
-                <hr />
+            <Header title={project.name} />
+            <div className="container">
+                <h2>Versions</h2>
                 {recipes.length > 0 && (
                     recipes.map((recipe, index) => (
                         <RecipeCard
@@ -133,7 +129,7 @@ const Project = () => {
                     )
                 }
             </div>
-        </div >
+        </main>
     );
 }
 

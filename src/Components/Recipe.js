@@ -4,7 +4,7 @@ import { useParams, useLocation, Link } from "react-router-dom";
 import { getToken } from "../helpers";
 
 import styles from './Recipe.module.css';
-
+import Header from './Header';
 import RatingCard from './RatingCard';
 
 const INGREDIENT_API = 'https://pizza-recipe-app.herokuapp.com/ingredients';
@@ -46,20 +46,20 @@ const Recipe = () => {
     }, [])
 
     return (
-        <div>
-            <header>
-                <h1>{location.state.project.name}</h1>
-                <h2>{location.state.recipe.name}</h2>
-            </header>
-            <Link
-                to={`/project/${projectId}`}
-                state={{
-                    project: location.state.project
-                }}
-            >
-                Back
-            </Link>
-            <div className="interior-content">
+        <main>
+            <Header
+                title={location.state.project.name}
+                subtitle={location.state.recipe.name}
+            />
+            <div className="container">
+                <Link
+                    to={`/project/${projectId}`}
+                    state={{
+                        project: location.state.project
+                    }}
+                >
+                    Back
+                </Link>
                 <div className={styles.recipeLayout}>
                     <div>
                         <h2>Ingredients</h2>
@@ -102,7 +102,7 @@ const Recipe = () => {
                         {
                             location.state.ratings.length === 0 &&
                             <Link
-                                to={`/recipe/${location.state.recipe.id}/rate`}
+                                to={`/project/${projectId}/recipe/${recipeId}/rate`}
                                 state={{
                                     project: location.state.project,
                                     recipe: location.state.recipe
@@ -114,7 +114,7 @@ const Recipe = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
 

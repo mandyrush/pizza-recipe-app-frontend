@@ -84,7 +84,7 @@ const Router = () => {
 
             {/* Rating Routes */}
             <Route
-                path="/recipe/:recipeId/rate"
+                path="/project/:projectId/recipe/:recipeId/rate"
                 element={
                     <ProtectedRoute>
                         <Rate />

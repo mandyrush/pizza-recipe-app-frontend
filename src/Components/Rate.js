@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { getToken } from "../helpers";
 
 import RatingFields from "./RatingFields";
+import Header from "./Header";
 import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './Rating.module.css';
@@ -17,7 +18,8 @@ const Rate = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     let location = useLocation();
-    const { recipeId } = useParams();
+    const navigate = useNavigate();
+    const { projectId, recipeId } = useParams();
 
     // Get rating categories
     useEffect(() => {
@@ -60,19 +62,19 @@ const Rate = () => {
                     },
                     body: JSON.stringify(rating)
                 })
-                    .then(setIsLoading(false))
+                    .then(() => {
+                        setIsLoading(false);
+                        navigate(`/project/${projectId}`);
+                    })
                     .catch(error => console.log('Failed to create rating: ', error))
             }
         })
     }
 
     return (
-        <div>
-            <header>
-                <h1>Rate</h1>
-                {/* <p>{location.state.project.name} - {location.state.recipe.name}</p> */}
-            </header>
-            <div className="interior-content">
+        <main>
+            <Header title="Rate" subtitle={`${location.state.project.name} - ${location.state.recipe.name}`} />
+            <div className="container">
                 {isLoading && (
                     <LoadingSpinner
                         message={'Calculating Rating...'}
@@ -93,7 +95,7 @@ const Rate = () => {
                     <button onClick={(e) => handleSubmit(e)}>Submit</button>
                 </form>
             </div>
-        </div>
+        </main>
     )
 }
 

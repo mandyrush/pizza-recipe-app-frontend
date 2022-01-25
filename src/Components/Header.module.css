@@ -1,7 +1,15 @@
 .header {
     position: relative;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.header h2 {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.25rem;
+    padding-top: 0.5rem;
 }
 
 .headingBorderTop {

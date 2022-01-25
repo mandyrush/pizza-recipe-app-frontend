@@ -1,0 +1,41 @@
+.recipeCard {
+    border-top: 1px dotted var(--color-charcoal);
+    padding: 1rem;
+}
+
+.recipeCardButtons {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipeCardButtons a,
+.recipeCardButtons button {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.rating {
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    .recipeCardButtons {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .recipeCardButtons a,
+    .recipeCardButtons button {
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .recipeCard {
+        display: flex;
+        justify-content: space-between;
+    }
+}

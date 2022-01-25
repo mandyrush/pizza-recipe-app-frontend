@@ -1,10 +1,17 @@
-.recipeLayout {
-    display: grid;
-    grid-template-columns: 60% 40%;
-}
-
 .ratings {
-    margin: 2rem;
+    margin-top: 3rem;
     padding: 2rem;
     box-shadow: 6px 6px 10px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 992px) {
+    .recipeLayout {
+        display: grid;
+        grid-template-columns: 60% 40%;
+    }
+
+    .ratings {
+        margin-left: 2rem;
+        margin-top: 0;
+    }
 }

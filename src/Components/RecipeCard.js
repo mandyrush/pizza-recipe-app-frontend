@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getToken } from "../helpers";
 
 import RecipeClone from "./RecipeClone";
+import styles from './RecipeCard.module.css';
 
 const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
 
@@ -58,16 +59,16 @@ const RecipeCard = ({
     }
 
     return (
-        <div>
-            <p>{recipe.name} - {
+        <div className={styles.recipeCard}>
+            <p><strong>{recipe.name}</strong> - {
                 averageRatings !== 0 && (
-                    <span>{averageRatings}</span>
+                    <span className={styles.rating}><em>{averageRatings}</em></span>
                 )
             }
                 {
                     averageRatings === 0 && (
                         <Link
-                            to={`/recipe/${recipe.id}/rate`}
+                            to={`/project/${project.id}/recipe/${recipe.id}/rate`}
                             state={{
                                 recipe: recipe,
                                 project: project
@@ -76,36 +77,42 @@ const RecipeCard = ({
                             Rate
                         </Link>
                     )
-                }</p>
-            <Link
-                to={`recipe/${recipe.id}`}
-                state={{
-                    recipe: recipe,
-                    project: project,
-                    ratings: ratings,
-                    averageRatings: averageRatings
-                }}
-            >
-                View
-            </Link>
-            <Link
-                to={`/project/${project.id}/recipe/update/${recipe.id}`}
-                state={{ recipe: recipe }}
-            >
-                Edit
-            </Link>
-            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-            {
-                highestRating && (
-                    <RecipeClone
-                        recipe={recipe}
-                        projectId={project.id}
-                        setRecipes={setRecipes}
-                        recipes={recipes}
-                    />
-                )
-            }
-            <hr />
+                }
+                {
+                    highestRating && (
+                        <RecipeClone
+                            recipe={recipe}
+                            projectId={project.id}
+                            setRecipes={setRecipes}
+                            recipes={recipes}
+                        />
+                    )
+                }
+            </p>
+            <div className={styles.recipeCardButtons}>
+                <Link
+                    to={`recipe/${recipe.id}`}
+                    state={{
+                        recipe: recipe,
+                        project: project,
+                        ratings: ratings,
+                        averageRatings: averageRatings
+                    }}
+                    className="btn-primary"
+                >
+                    <i className="far fa-eye"></i> View
+                </Link>
+                <Link
+                    to={`/project/${project.id}/recipe/update/${recipe.id}`}
+                    state={{ recipe: recipe }}
+                    className="btn-primary"
+                >
+                    <span className="fas fa-pencil-alt"></span> Edit
+                </Link>
+                <button onClick={() => handleDelete(recipe.id)} className="btn-primary">
+                    <span className="far fa-trash-alt"></span> Delete
+                </button>
+            </div>
         </div>
     )
 }

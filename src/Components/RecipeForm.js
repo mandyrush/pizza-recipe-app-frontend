@@ -60,6 +60,7 @@ const RecipeForm = ({
     return (
         <div>
             <form>
+                <h2>Notes</h2>
                 <label htmlFor="name">Version Name</label>
                 <input
                     type="text"
@@ -82,7 +83,6 @@ const RecipeForm = ({
                 >
                     Next
                 </button>
-
             </form>
             {isLoading && (
                 <LoadingSpinner

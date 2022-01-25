@@ -1,15 +1,8 @@
-.homeLayout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: calc(100vh - 40px);
-}
-
 .logo {
     padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 1px solid #000;
     background: url('/public/images/backgrounds/home_bkgd.jpg') no-repeat center center;
     background-size: cover;
 }
@@ -21,4 +14,11 @@
     text-align: center;
     text-shadow: 0 0 12px rgba(0,0,0,0.7);
     line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .homeLayout {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

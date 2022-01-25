@@ -4,7 +4,7 @@ import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 import { getToken, getUserId } from "../helpers";
 import LoadingSpinner from "./LoadingSpinner";
-
+import Header from './Header';
 import styles from './ProjectForm.module.css';
 
 const PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects';
@@ -66,12 +66,11 @@ const ProjectForm = ({ type }) => {
     }
 
     return (
-        <div>
-            <header>
-                <h1>{CapitalizeFirstLetter(type)} Pizza</h1>
-                {project.name && <h2>{project.name}</h2>}
-            </header>
-            <div className="interior-content">
+        <main>
+            <Header
+                title={`${CapitalizeFirstLetter(type)} Pizza`}
+            />
+            <section className="container">
                 <form>
                     <label htmlFor="name">Name</label>
                     <input type="text" name="name" id="name" value={project.name} onChange={(event) => handleChange(event)} />
@@ -84,8 +83,8 @@ const ProjectForm = ({ type }) => {
                         />
                     )}
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }
 
