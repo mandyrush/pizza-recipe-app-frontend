@@ -3,6 +3,10 @@
     padding: 1rem;
 }
 
+.rateLink {
+    font-weight: 500;
+}
+
 .recipeCardButtons {
     display: flex;
     flex-direction: column;
@@ -15,9 +19,18 @@
 }
 
 .rating {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-primary);
     margin-right: 1rem;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -37,5 +50,11 @@
     .recipeCard {
         display: flex;
         justify-content: space-between;
+    }
+}
+
+@media (min-width: 1200px) {
+    .rating {
+        margin-bottom: 0;
     }
 }

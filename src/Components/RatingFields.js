@@ -36,7 +36,6 @@ const RatingFields = ({
                 placeholder="0 - 50"
                 onChange={(e) => setScore(e.target.value)}
             />
-
             <label htmlFor={`comments-${index}`}>Comments</label>
             <textarea
                 rows="3"

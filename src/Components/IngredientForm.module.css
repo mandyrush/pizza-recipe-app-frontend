@@ -1,0 +1,18 @@
+.ingredientForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingredientContainer {
+    width: 100%;
+}
+
+.ingredientForm button {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 1rem;
+}

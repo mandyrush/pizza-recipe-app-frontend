@@ -76,7 +76,11 @@ const LoginForm = () => {
                     }}
                     required
                 />
-                <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                <button
+                    className="btn-primary"
+                    onClick={(e) => handleSubmit(e)}>
+                    Submit
+                </button>
                 <Link to={'/register'}>Register</Link>
                 {
                     loginError !== '' && (

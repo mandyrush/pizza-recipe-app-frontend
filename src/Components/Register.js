@@ -79,7 +79,12 @@ const Register = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
-                    <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                    <button
+                        className="btn-primary"
+                        onClick={(e) => handleSubmit(e)}
+                    >
+                        Submit
+                    </button>
                     <Link to={'/'}>Cancel</Link>
                 </form>
                 {

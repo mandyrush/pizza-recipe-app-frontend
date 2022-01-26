@@ -9,13 +9,17 @@ const Header = ({
     return (
         <header className={styles.header}>
             <div className={styles.headingBorderTop}></div>
-            <h1>{title}</h1>
+            <h1>
+                {title}
+                <br></br>
+                {
+                    subtitle && (
+                        <small>{subtitle}</small>
+                    )
+                }
+            </h1>
             <div className={styles.headingBorderBottom}></div>
-            {
-                subtitle && (
-                    <h2>{subtitle}</h2>
-                )
-            }
+
         </header>
     )
 }

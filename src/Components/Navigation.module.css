@@ -8,6 +8,8 @@
 }
 
 .navbar button {
+    display: block;
+    margin: auto;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -15,6 +17,7 @@
 }
 
 .navLink {
+    display: block;
     color: var(--color-white);
     font-weight: 500;
     text-decoration: none;
@@ -22,20 +25,26 @@
     letter-spacing: 2px;
 }
 
-.navLink:not(:last-child):after {
-    content: '|';
-    color: var(--color-white);
-    padding: 0 1rem;
-}
-
 .navLink:hover,
 .navLink:active,
 .navLink:focus {
     color: var(--color-primary-light);
+    text-decoration: none;
 }
 
 @media (min-width: 768px) {
     .navbar {
         text-align: right;
+    }
+
+    .navbar button,
+    .navLink {
+        display: inline-block;
+    }
+
+    .navLink:not(:last-child):after {
+        content: '|';
+        color: var(--color-white);
+        padding: 0 1rem;
     }
 }

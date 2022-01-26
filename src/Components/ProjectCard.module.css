@@ -1,25 +1,7 @@
-.card {
-    /* border-radius: 8px; */
-}
-
 .card a, 
 .card button {
-    color: var(--color-white);
-    border: 1px solid var(--color-white);
-    padding: 0.5rem;
     flex-grow: 1;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.card a:hover,
-.card a:active,
-.card a:focus,
-.card button:hover,
-.card button:active,
-.card button:focus {
-    background-color: var(--color-white);
-    color: var(--color-accent);
+    padding: 0.5rem;
 }
 
 .card a:hover i,
@@ -42,8 +24,8 @@
     width: 100%;
     height: 100%;
     filter: brightness(40%);
-    /* border-top-left-radius: 8px;
-    border-top-right-radius: 8px; */
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
 }
 
 .cardImage p {
@@ -63,9 +45,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
     background-color: var(--color-accent);
-    /* border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px; */
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
 }

@@ -94,7 +94,7 @@ const RecipeClone = ({
     }
 
     return (
-        <button onClick={handleClone}>
+        <button onClick={handleClone} className="btn-outline btn-sm">
             <span className="far fa-clone"></span> Clone
         </button>
     )

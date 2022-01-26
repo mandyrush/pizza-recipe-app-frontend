@@ -75,7 +75,12 @@ const ProjectForm = ({ type }) => {
                     <label htmlFor="name">Name</label>
                     <input type="text" name="name" id="name" value={project.name} onChange={(event) => handleChange(event)} />
                     {/* <p>Upload Project Image <button>Upload</button></p> */}
-                    <button type="button" onClick={handleSubmit}>{CapitalizeFirstLetter(type)}</button>
+                    <button
+                        className="btn-primary"
+                        type="button"
+                        onClick={handleSubmit}>
+                        {CapitalizeFirstLetter(type)}
+                    </button>
                     <Link to={'/dashboard'} >Cancel</Link>
                     {isLoading && (
                         <LoadingSpinner

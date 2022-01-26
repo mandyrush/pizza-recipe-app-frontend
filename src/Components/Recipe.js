@@ -86,31 +86,36 @@ const Recipe = () => {
                         {/* <h2>Gallery</h2> */}
                     </div>
                     <div className={styles.ratings}>
-                        <h2>Ratings</h2>
+                        <header>
+                            <h2>Ratings</h2>
+                            <p>Score <span className={styles.rating}>{location.state.averageRatings}</span></p>
+                        </header>
+                        <div className={styles.ratingListings}>
 
-                        {location.state.ratings.length > 0 &&
-                            (
-                                <div>
-                                    <p>Score - {location.state.averageRatings}</p>
-                                    {
-                                        location.state.ratings.map((rating, index) => (
-                                            <RatingCard key={index} rating={rating} averageRatings={location.state.averageRatings} />))
-                                    }
-                                </div>
-                            )
-                        }
-                        {
-                            location.state.ratings.length === 0 &&
-                            <Link
-                                to={`/project/${projectId}/recipe/${recipeId}/rate`}
-                                state={{
-                                    project: location.state.project,
-                                    recipe: location.state.recipe
-                                }}
-                            >
-                                Rate
-                            </Link>
-                        }
+                            {location.state.ratings.length > 0 &&
+                                location.state.ratings.map((rating, index) => (
+                                    <RatingCard key={index} rating={rating} averageRatings={location.state.averageRatings} />))
+                            }
+
+                            {
+                                location.state.ratings.length === 0 && (
+                                    <div className={styles.noRatingsMessage}>
+                                        <p>No ratings found, submit a rating to get started.</p>
+                                        <Link
+                                            to={`/project/${projectId}/recipe/${recipeId}/rate`}
+                                            state={{
+                                                project: location.state.project,
+                                                recipe: location.state.recipe
+                                            }}
+                                            className="btn-outline"
+                                        >
+                                            Rate
+                                        </Link>
+                                    </div>
+                                )
+
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

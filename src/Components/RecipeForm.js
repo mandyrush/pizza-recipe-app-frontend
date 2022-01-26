@@ -58,7 +58,7 @@ const RecipeForm = ({
     }
 
     return (
-        <div>
+        <div className={styles.recipeForm}>
             <form>
                 <h2>Notes</h2>
                 <label htmlFor="name">Version Name</label>
@@ -79,6 +79,7 @@ const RecipeForm = ({
                 />
                 <button
                     type="button"
+                    className="btn-primary"
                     onClick={handleSubmit}
                 >
                     Next

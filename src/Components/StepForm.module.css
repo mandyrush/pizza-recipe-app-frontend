@@ -1,0 +1,18 @@
+.stepForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stepContainer {
+    width: 100%;
+}
+
+.stepForm a {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 1rem;
+}

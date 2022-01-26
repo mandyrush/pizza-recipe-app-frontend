@@ -1,0 +1,24 @@
+.ratingForm {
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .ratingForm {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+    }
+
+    .ratingForm button {
+        grid-column: 1 / 4;
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .ratingForm {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

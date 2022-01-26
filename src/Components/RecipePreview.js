@@ -57,34 +57,54 @@ const RecipePreview = ({
 
     return (
         <div className={styles.recipePreview}>
-            <div className={styles.recipePreviewHeader}>
+            <header className={styles.recipePreviewHeader}>
                 {recipe.name && <h2>{recipe.name}</h2>}
+            </header>
+            <div className={styles.recipeInfo}>
+                <article>
+                    <h3>Notes</h3>
+                    {recipe.notes && <p>{recipe.notes}</p>}
+                </article>
+                <article>
+                    <h3>Ingredients</h3>
+                    {ingredients &&
+                        <ul>
+                            {ingredients.map((ingredient, index) => (
+                                <li key={index}>
+                                    {ingredient.quantity} {ingredient.name} - {ingredient.notes}
+                                    <button
+                                        className="btn-icon"
+                                        onClick={(e) => handleDeleteIngredient(e, ingredient)}
+                                    >
+                                        <span className="fas fa-trash-alt"></span>
+                                        <span className="sr-only">Delete</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    }
+                </article>
+                <article>
+                    <h3>Steps</h3>
+                    {steps &&
+                        <ul>
+                            {steps.map((step, index) => (
+                                <li key={index}>
+                                    {step.step}
+                                    <button
+                                        className="btn-icon"
+                                        onClick={(e) => handleDeleteStep(e, step.id)}
+                                    >
+                                        <span className="fas fa-trash-alt"></span>
+                                        <span className="sr-only">Delete</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    }
+                </article>
+                {/* <h2>Gallery</h2> */}
             </div>
-            <h2>Notes</h2>
-            {recipe.notes && <p>{recipe.notes}</p>}
-            <h2>Ingredients</h2>
-            {ingredients &&
-                <ul>
-                    {ingredients.map((ingredient, index) => (
-                        <li key={index}>
-                            {ingredient.quantity} {ingredient.name} - {ingredient.notes}
-                            <button onClick={(e) => handleDeleteIngredient(e, ingredient)}>Delete</button>
-                        </li>
-                    ))}
-                </ul>
-            }
-            <h2>Steps</h2>
-            {steps &&
-                <ul>
-                    {steps.map((step, index) => (
-                        <li key={index}>
-                            {step.step}
-                            <button onClick={(e) => handleDeleteStep(e, step.id)}>Delete</button>
-                        </li>
-                    ))}
-                </ul>
-            }
-            {/* <h2>Gallery</h2> */}
         </div>
     )
 }

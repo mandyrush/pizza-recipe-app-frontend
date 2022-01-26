@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { getToken } from "../helpers";
+import styles from './StepForm.module.css';
 
 const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
 
@@ -49,22 +50,31 @@ const StepForm = ({
     }
 
     return (
-        <div>
-            <form>
-                <h2>Steps</h2>
-                <label htmlFor="step">Step</label>
-                <input
-                    type="text"
-                    name="step"
-                    id="step"
-                    value={step.step}
-                    onChange={(event) => setStep({ ...step, step: event.target.value })}
-                />
-                <button onClick={(event) => handleAddStep(event)}>
-                    Add Step
-                </button>
-            </form>
-            <Link to={`/project/${projectId}`} className="btn-primary">Finish</Link>
+        <div className={styles.stepForm}>
+            <div className={styles.stepContainer}>
+                <form>
+                    <h2>Steps</h2>
+                    <label htmlFor="step">Step</label>
+                    <input
+                        type="text"
+                        name="step"
+                        id="step"
+                        value={step.step}
+                        onChange={(event) => setStep({ ...step, step: event.target.value })}
+                    />
+                    <button
+                        className="btn-outline"
+                        onClick={(event) => handleAddStep(event)}
+                    >
+                        Add Step
+                    </button>
+                </form>
+                <Link
+                    to={`/project/${projectId}`}
+                    className="btn-primary">
+                    Finish
+                </Link>
+            </div>
         </div>
     )
 }

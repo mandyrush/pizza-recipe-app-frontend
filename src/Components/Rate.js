@@ -7,7 +7,7 @@ import RatingFields from "./RatingFields";
 import Header from "./Header";
 import LoadingSpinner from "./LoadingSpinner";
 
-import styles from './Rating.module.css';
+import styles from './Rate.module.css';
 
 const RATING_CATEGORIES_API = `https://pizza-recipe-app.herokuapp.com/rating-categories`;
 const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
@@ -73,14 +73,14 @@ const Rate = () => {
 
     return (
         <main>
-            <Header title="Rate" subtitle={`${location.state.project.name} - ${location.state.recipe.name}`} />
+            <Header title="Rate" subtitle={`${location.state.project.name} / ${location.state.recipe.name}`} />
             <div className="container">
                 {isLoading && (
                     <LoadingSpinner
-                        message={'Calculating Rating...'}
+                        message={'Loading...'}
                     />
                 )}
-                <form>
+                <form className={styles.ratingForm}>
                     {
                         ratingCategories.length > 0 && ratingCategories.map((category, index) => (
                             <RatingFields
@@ -92,7 +92,11 @@ const Rate = () => {
                             />
                         ))
                     }
-                    <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                    <button
+                        className="btn-primary"
+                        onClick={(e) => handleSubmit(e)}>
+                        Submit
+                    </button>
                 </form>
             </div>
         </main>

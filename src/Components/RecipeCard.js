@@ -60,9 +60,11 @@ const RecipeCard = ({
 
     return (
         <div className={styles.recipeCard}>
-            <p><strong>{recipe.name}</strong> - {
+            <p>{recipe.name} - {
                 averageRatings !== 0 && (
-                    <span className={styles.rating}><em>{averageRatings}</em></span>
+                    <span className={styles.rating}>
+                        <em>{averageRatings}</em>
+                    </span>
                 )
             }
                 {
@@ -73,11 +75,14 @@ const RecipeCard = ({
                                 recipe: recipe,
                                 project: project
                             }}
+                            className={styles.rateLink}
                         >
                             Rate
                         </Link>
                     )
                 }
+            </p>
+            <div className={styles.recipeCardButtons}>
                 {
                     highestRating && (
                         <RecipeClone
@@ -88,8 +93,6 @@ const RecipeCard = ({
                         />
                     )
                 }
-            </p>
-            <div className={styles.recipeCardButtons}>
                 <Link
                     to={`recipe/${recipe.id}`}
                     state={{
@@ -98,19 +101,19 @@ const RecipeCard = ({
                         ratings: ratings,
                         averageRatings: averageRatings
                     }}
-                    className="btn-primary"
+                    className="btn-primary btn-sm"
                 >
                     <i className="far fa-eye"></i> View
                 </Link>
                 <Link
                     to={`/project/${project.id}/recipe/update/${recipe.id}`}
                     state={{ recipe: recipe }}
-                    className="btn-primary"
+                    className="btn-primary btn-sm"
                 >
                     <span className="fas fa-pencil-alt"></span> Edit
                 </Link>
-                <button onClick={() => handleDelete(recipe.id)} className="btn-primary">
-                    <span className="far fa-trash-alt"></span> Delete
+                <button onClick={() => handleDelete(recipe.id)} className="btn-primary btn-sm">
+                    <span className="fas fa-trash-alt"></span> Delete
                 </button>
             </div>
         </div>
