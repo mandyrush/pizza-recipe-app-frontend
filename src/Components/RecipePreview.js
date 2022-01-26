@@ -71,7 +71,7 @@ const RecipePreview = ({
                         <ul>
                             {ingredients.map((ingredient, index) => (
                                 <li key={index}>
-                                    {ingredient.quantity} {ingredient.name} - {ingredient.notes}
+                                    {ingredient.quantity} {ingredient.name} {ingredient.notes !== '' && (<span>- {ingredient.notes}</span>)}
                                     <button
                                         className="btn-icon"
                                         onClick={(e) => handleDeleteIngredient(e, ingredient)}

@@ -64,14 +64,19 @@ const RecipeManager = ({ type }) => {
         <main>
             <Header title={`${CapitalizeFirstLetter(type)} Recipe`} />
             <div className="container">
-                <Link
-                    to={`/project/${projectId}`}
-                    state={{
-                        project: location.state.project
-                    }}
-                >
-                    Back
-                </Link>
+                {/* {
+                    location.state.project && (
+                        <Link
+                            to={`/project/${projectId}`}
+                            state={{
+                                project: location.state.project
+                            }}
+                        >
+                            Back
+                        </Link>
+                    )
+                } */}
+
                 <div className={styles.layout}>
                     {RecipeManagerIsVisible && (
                         <RecipeForm

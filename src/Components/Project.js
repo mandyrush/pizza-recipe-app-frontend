@@ -124,7 +124,12 @@ const Project = () => {
                     recipes.length <= 0 && (
                         <div>
                             <p>Create a new version to get started!</p>
-                            <Link to={`/project/${project.id}/recipe/create`}>Create</Link>
+                            <Link
+                                to={`/project/${project.id}/recipe/create`}
+                                className="btn-primary"
+                            >
+                                Create
+                            </Link>
                         </div>
                     )
                 }

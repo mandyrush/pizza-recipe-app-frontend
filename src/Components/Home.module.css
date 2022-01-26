@@ -1,5 +1,6 @@
 .homeLayout {
     padding-bottom: 0;
+    height: calc(100vh - 48px);
 }
 
 .logo {

@@ -66,7 +66,7 @@ const Recipe = () => {
                         {ingredients.length > 0 && (
                             <ul>
                                 {ingredients.map((ingredient, index) => (
-                                    <li key={index}>{ingredient.quantity} {ingredient.name} - {ingredient.notes}</li>
+                                    <li key={index}>{ingredient.quantity} {ingredient.name} {ingredient.notes !== '' && (<span>- {ingredient.notes}</span>)}</li>
                                 ))}
                             </ul>
                         )}
