@@ -35,6 +35,7 @@ body {
 
 h1 {
     font-family: var(--font-accent);
+    color: var(--color-charcoal);
     font-size: 3rem;
     line-height: 0.7;
     margin-top: 1rem;
