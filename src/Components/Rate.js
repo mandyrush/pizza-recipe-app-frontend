@@ -15,7 +15,6 @@ const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
 const Rate = () => {
     const [ratingCategories, setRatingCategories] = useState([]);
     const [ratings, setRatings] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     let location = useLocation();
     const navigate = useNavigate();
@@ -50,7 +49,6 @@ const Rate = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsLoading(true);
         ratings.forEach(rating => {
             if (rating.score !== null) {
                 fetch(RATINGS_API, {
@@ -63,7 +61,6 @@ const Rate = () => {
                     body: JSON.stringify(rating)
                 })
                     .then(() => {
-                        setIsLoading(false);
                         navigate(`/project/${projectId}`);
                     })
                     .catch(error => console.log('Failed to create rating: ', error))
@@ -73,13 +70,8 @@ const Rate = () => {
 
     return (
         <main>
-            <Header title="Rate" subtitle={`${location.state.project.name} / ${location.state.recipe.name}`} />
+            <Header title="Rate It" subtitle={`${location.state.project.name} / ${location.state.recipe.name}`} />
             <div className="container">
-                {isLoading && (
-                    <LoadingSpinner
-                        message={'Loading...'}
-                    />
-                )}
                 <form className={styles.ratingForm}>
                     {
                         ratingCategories.length > 0 && ratingCategories.map((category, index) => (

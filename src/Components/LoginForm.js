@@ -34,10 +34,10 @@ const LoginForm = () => {
             .then(response => response.json())
             .then(data => {
                 // cookies expire in 3 hours
-                document.cookie = `loggedIn=true;max-age=60*60*3";`;
-                document.cookie = `token=${data.token};max-age=60*60*3";`;
-                document.cookie = `username=${data.user.username};max-age=60*60*3";`;
-                document.cookie = `userId=${data.user.id};max-age=60*60*3;`;
+                document.cookie = `token=${data.token};max-age=60*60";`;
+                document.cookie = `username=${data.user.username};max-age=60*60";`;
+                document.cookie = `userId=${data.user.id};max-age=60*60;`;
+                document.cookie = `loggedIn=true;max-age=60*60";`;
                 setIsLoading(false);
                 navigate('/dashboard');
             })

@@ -15,7 +15,6 @@ const PROJECT_API = `https://pizza-recipe-app.herokuapp.com/projects`;
 const Project = () => {
     const [project, setProject] = useState([]);
     const [recipes, setRecipes] = useState([]);
-    const [recipeAverages, setRecipeAverages] = useState([]);
     const [highestRating, setHighestRating] = useState({});
     const [showRatingBanner, setShowRatingBanner] = useState(false);
 
@@ -41,40 +40,39 @@ const Project = () => {
             }
         })
             .then(response => response.json())
-            .then(data => setRecipes(data))
+            .then(data => {
+                let recipeArray = data.map(recipe => ({ ...recipe, 'ratings_average': 0 }));
+                setRecipes(recipeArray);
+            })
             .catch(error => console.log('Failed to fetch recipes: ', error))
     }, [])
 
     // Check to see if any recipes need rated, if so show reminder banner
     useEffect(() => {
-        let ratingNeeded = recipeAverages.findIndex(recipeAverage => recipeAverage.average === 0);
+        let ratingNeeded = recipes.findIndex(recipe => recipe.ratings_average === 0);
         if (ratingNeeded !== -1) {
             setShowRatingBanner(true);
         } else {
             setShowRatingBanner(false);
         }
         getHighestAverage();
-    }, [recipeAverages])
+    }, [recipes])
 
-    const updateAverage = (average) => {
-        // Look through the recipe averages array, see if this one is in the array
-        let foundAverageIndex = recipeAverages.findIndex(recipeAverage => recipeAverage.recipeId === average.recipeId);
-        // If it is, update it
-        if (foundAverageIndex !== -1) {
-            let updatedRecipeAverages = [...recipeAverages];
-            updatedRecipeAverages[foundAverageIndex] = average;
-            setRecipeAverages(updatedRecipeAverages);
-        } else {
-            // If it isn't add it
-            let updatedRecipeAverages = [...recipeAverages, average];
-            setRecipeAverages(updatedRecipeAverages);
+    const updateAverage = (averageData) => {
+        // Find the recipe to be updated
+        let foundIndex = recipes.findIndex(recipe => recipe.id === averageData.recipeId);
+
+        if (foundIndex !== -1) {
+            let updatedRecipes = [...recipes];
+            updatedRecipes[foundIndex].ratings_average = averageData.average;
+            setRecipes(updatedRecipes);
         }
     }
 
     const getHighestAverage = () => {
-        if (recipeAverages.length > 0) {
-            let highestRating = recipeAverages.reduce(function (prev, current) {
-                return (Number(prev.average) > Number(current.average)) ? prev : current
+        if (recipes.length > 0) {
+            let highestRating = recipes.reduce(function (prev, current) {
+                return (Number(prev.ratings_average) > Number(current.ratings_average)) ? prev : current
             })
             setHighestRating(highestRating);
         }
@@ -113,7 +111,7 @@ const Project = () => {
                             handleDelete={handleDelete}
                             project={project}
                             updateAverage={updateAverage}
-                            highestRating={highestRating.recipeId === recipe.id}
+                            highestRating={highestRating.id === recipe.id}
                             setRecipes={setRecipes}
                             recipes={recipes}
                         />

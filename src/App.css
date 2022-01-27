@@ -126,10 +126,8 @@ button.btn-outline-white,
 
 button.btn-outline-white:hover,
 button.btn-outline-white:active,
-button.btn-outline-white:focus,
 .btn-outline-white:hover,
-.btn-outline-white:active,
-.btn-outline-white:focus {
+.btn-outline-white:active {
     background-color: var(--color-white);
     color: var(--color-accent);
     border: 1px solid var(--color-white);
@@ -138,16 +136,12 @@ button.btn-outline-white:focus,
 
 button:hover,
 button:active,
-button:focus,
 button.btn-outline:hover,
 button.btn-outline:active,
-button.btn-outline:focus,
 .btn-primary:hover,
 .btn-primary:active,
-.btn-primary:focus,
 .btn-outline:hover,
-.btn-outline:active,
-.btn-outline:focus {
+.btn-outline:active {
     background-color: var(--color-accent-dark);
     color: var(--color-white);
     text-decoration: none;

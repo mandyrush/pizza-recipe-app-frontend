@@ -61,14 +61,14 @@ const RecipeCard = ({
     return (
         <div className={styles.recipeCard}>
             <p>{recipe.name} - {
-                averageRatings !== 0 && (
+                recipe.ratings_average !== 0 && (
                     <span className={styles.rating}>
-                        <em>{averageRatings}</em>
+                        <em>{recipe.ratings_average.toFixed(2)}</em>
                     </span>
                 )
             }
                 {
-                    averageRatings === 0 && (
+                    recipe.ratings_average === 0 && (
                         <Link
                             to={`/project/${project.id}/recipe/${recipe.id}/rate`}
                             state={{
