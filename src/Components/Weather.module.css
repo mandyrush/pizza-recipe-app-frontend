@@ -1,0 +1,7 @@
+.banner {
+    background-color: var(--color-primary-light);
+    color: var(--color-charcoal);
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: 600;
+}

@@ -4,6 +4,7 @@ import { useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 
 import styles from './RecipeManager.module.css';
+import Weather from "./Weather";
 import Header from './Header';
 import RecipePreview from "./RecipePreview";
 import RecipeForm from "./RecipeForm";
@@ -62,21 +63,9 @@ const RecipeManager = ({ type }) => {
 
     return (
         <main>
+            <Weather />
             <Header title={`${CapitalizeFirstLetter(type)} Recipe`} />
             <div className="container">
-                {/* {
-                    location.state.project && (
-                        <Link
-                            to={`/project/${projectId}`}
-                            state={{
-                                project: location.state.project
-                            }}
-                        >
-                            Back
-                        </Link>
-                    )
-                } */}
-
                 <div className={styles.layout}>
                     {RecipeManagerIsVisible && (
                         <RecipeForm

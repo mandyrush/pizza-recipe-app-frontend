@@ -16,7 +16,7 @@ const Navigation = () => {
     }
 
     return (
-        <div className={styles.navbar}>
+        <header className={styles.navbar}>
             <div className="container">
                 <nav>
                     <Link to="/" className={styles.navLink}>Home</Link>
@@ -28,7 +28,7 @@ const Navigation = () => {
                     )}
                 </nav>
             </div>
-        </div>
+        </header>
     );
 }
 
