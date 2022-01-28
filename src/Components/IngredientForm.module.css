@@ -1,10 +1,3 @@
-.ingredientForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .ingredientContainer {
     width: 100%;
 }

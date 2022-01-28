@@ -51,9 +51,9 @@ const Weather = () => {
     }
 
     return (
-        <div className={styles.banner}>
+        <div>
             {currentWeather && (
-                <div>
+                <div className={styles.banner}>
                     <p>Current Temperature: {currentWeather.current.temp_f}&deg;F - Humidity: {currentWeather.current.humidity}%</p>
                 </div>
             )}
