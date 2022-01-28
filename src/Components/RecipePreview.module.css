@@ -31,3 +31,16 @@
 .recipePreview article:not(:last-child) {
     border-bottom: 1px dotted var(--color-charcoal-light);
 }
+
+.recipePreview li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipePreview li p::before {
+    content: '\2022';
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    padding-right: 0.5rem;
+    margin-left: -16px;
+}
