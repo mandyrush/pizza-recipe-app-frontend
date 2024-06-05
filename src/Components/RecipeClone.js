@@ -1,10 +1,11 @@
 import React from "react";
 
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
-const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
-const INGREDIENTS_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
-const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
+const RECIPE_API = `${config.url}/recipes`;
+const INGREDIENTS_API = `${config.url}/ingredients`;
+const STEP_API = `${config.url}/steps`;
 
 const RecipeClone = ({
     recipe,

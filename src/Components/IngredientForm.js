@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 import styles from './IngredientForm.module.css';
 
-const INGREDIENT_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
+const INGREDIENT_API = `${config.url}/ingredients`;
 
 const IngredientForm = ({
     handleUpdateIngredients,

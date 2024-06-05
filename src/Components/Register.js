@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import {config} from '../Constants';
 
 import styles from './Register.module.css';
 import Header from "./Header";
 import LoadingSpinner from './LoadingSpinner';
 
-const REGISTER_API = 'https://pizza-recipe-app.herokuapp.com/users';
+const REGISTER_API = `${config.url}/users`;
 
 const Register = () => {
     const [username, setUsername] = useState('');

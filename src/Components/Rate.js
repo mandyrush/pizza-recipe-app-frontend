@@ -2,15 +2,15 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
 import RatingFields from "./RatingFields";
 import Header from "./Header";
-import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './Rate.module.css';
 
-const RATING_CATEGORIES_API = `https://pizza-recipe-app.herokuapp.com/rating-categories`;
-const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
+const RATING_CATEGORIES_API = `${config.url}/rating-categories`;
+const RATINGS_API = `${config.url}/ratings`;
 
 const Rate = () => {
     const [ratingCategories, setRatingCategories] = useState([]);

@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import {config} from '../Constants';
 
 import styles from './Weather.module.css';
 
-const WEATHER_API = 'https://pizza-recipe-app.herokuapp.com/weather';
+const WEATHER_API = `${config.url}/weather`;
 
 const Weather = () => {
     const [currentWeather, setCurrentWeather] = useState('');

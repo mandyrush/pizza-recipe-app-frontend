@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
+import {config} from '../Constants';
 
 import styles from './RecipeManager.module.css';
 import Weather from "./Weather";
@@ -11,8 +12,8 @@ import RecipeForm from "./RecipeForm";
 import IngredientForm from "./IngredientForm";
 import StepForm from './StepForm';
 
-const INGREDIENTS_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
-const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
+const INGREDIENTS_API = `${config.url}/ingredients`;
+const STEP_API = `${config.url}/steps`;
 
 const RecipeManager = ({ type }) => {
     const { projectId, recipeId } = useParams();

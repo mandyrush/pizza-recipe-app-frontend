@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { CapitalizeFirstLetter } from "../helpers";
 import { getToken, getUserId } from "../helpers";
+import {config} from '../Constants';
 import LoadingSpinner from "./LoadingSpinner";
 import Header from './Header';
-import styles from './ProjectForm.module.css';
 
-const PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects';
+const PROJECT_API = `${config.url}/projects`;
 
 const ProjectForm = ({ type }) => {
     const [project, setProject] = useState({

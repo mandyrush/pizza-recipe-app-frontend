@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import {config} from '../Constants';
 
 import styles from './LoginForm.module.css';
 
 import LoadingSpinner from "./LoadingSpinner";
 
-const LOGIN_API = 'https://pizza-recipe-app.herokuapp.com/login';
+const LOGIN_API = `${config.url}/login`;
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');

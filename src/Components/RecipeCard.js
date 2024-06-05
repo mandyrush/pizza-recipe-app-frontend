@@ -2,11 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
 import RecipeClone from "./RecipeClone";
 import styles from './RecipeCard.module.css';
 
-const RATINGS_API = `https://pizza-recipe-app.herokuapp.com/ratings`;
+const RATINGS_API = `${config.url}/ratings`;
 
 const RecipeCard = ({
     recipe,

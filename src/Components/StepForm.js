@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 import styles from './StepForm.module.css';
 
-const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
+const STEP_API = `${config.url}/steps`;
 
 const StepForm = ({
     handleUpdateSteps,
@@ -16,7 +17,7 @@ const StepForm = ({
         id: '',
         step: '',
         recipe_id: newRecipeId || recipeId,
-        step_order: ''
+        step_order: 0
     });
 
     useEffect(() => {

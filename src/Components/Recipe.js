@@ -2,13 +2,14 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from "react-router-dom";
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
 import styles from './Recipe.module.css';
 import Header from './Header';
 import RatingCard from './RatingCard';
 
-const INGREDIENT_API = 'https://pizza-recipe-app.herokuapp.com/ingredients';
-const STEP_API = 'https://pizza-recipe-app.herokuapp.com/steps';
+const INGREDIENT_API = `${config.url}/ingredients`;
+const STEP_API = `${config.url}/steps`;
 
 const Recipe = () => {
     const { projectId, recipeId } = useParams();

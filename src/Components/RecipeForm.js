@@ -3,9 +3,10 @@ import { useState } from "react";
 import styles from './RecipeForm.module.css';
 
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 import LoadingSpinner from "./LoadingSpinner";
 
-const RECIPE_API = 'https://pizza-recipe-app.herokuapp.com/recipes';
+const RECIPE_API = `${config.url}/recipes`;
 
 const RecipeForm = ({
     recipe,

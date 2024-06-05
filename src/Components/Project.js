@@ -3,14 +3,15 @@ import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
 import RecipeCard from "./RecipeCard";
 import Header from "./Header";
 
 import styles from './Project.module.css';
 
-const RECIPES_API = `https://pizza-recipe-app.herokuapp.com/recipes`;
-const PROJECT_API = `https://pizza-recipe-app.herokuapp.com/projects`;
+const RECIPES_API = `${config.url}/recipes`;
+const PROJECT_API = `${config.url}/projects`;
 
 const Project = () => {
     const [project, setProject] = useState([]);

@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { getToken, getUserId } from "../helpers";
+import {config} from '../Constants';
 
 import Header from "./Header";
 import ProjectCard from "./ProjectCard";
@@ -9,8 +10,8 @@ import LoadingSpinner from "./LoadingSpinner";
 
 import styles from './Projects.module.css';
 
-const FETCH_ALL_PROJECTS_API = 'https://pizza-recipe-app.herokuapp.com/projects';
-const DELETE_PROJECT_API = 'https://pizza-recipe-app.herokuapp.com/projects/';
+const FETCH_ALL_PROJECTS_API = `${config.url}/projects`;
+const DELETE_PROJECT_API = `${config.url}/projects/`;
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);

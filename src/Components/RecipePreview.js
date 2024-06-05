@@ -2,9 +2,10 @@ import React from "react";
 import styles from './RecipePreview.module.css';
 
 import { getToken } from "../helpers";
+import {config} from '../Constants';
 
-const INGREDIENTS_API = `https://pizza-recipe-app.herokuapp.com/ingredients`;
-const STEP_API = `https://pizza-recipe-app.herokuapp.com/steps`;
+const INGREDIENTS_API = `${config.url}/ingredients`;
+const STEP_API = `${config.url}/steps`;
 
 const RecipePreview = ({
     recipe,
