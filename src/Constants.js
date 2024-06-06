@@ -1,5 +1,5 @@
 const production = {
-    url: 'https://pizza-recipe-app.herokuapp.com'
+    url: 'https://oyster-app-6vjqi.ondigitalocean.app/app/api'
 };
 
 const development = {
