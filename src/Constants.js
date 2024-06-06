@@ -1,5 +1,5 @@
 const production = {
-    url: 'https://oyster-app-6vjqi.ondigitalocean.app/app/api'
+    url: 'https://oyster-app-6vjqi.ondigitalocean.app/app'
 };
 
 const development = {
